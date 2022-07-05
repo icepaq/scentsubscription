@@ -1,0 +1,68 @@
+.wrapper {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.title {
+    text-align: center;
+    font-size: 64px;
+    font-weight: bold;
+}
+
+.subtitle {
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    /* max-width: 50%; */
+}
+
+.formSlider {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.stepQuestion {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.option {
+    width: 200px;
+    height: 250px;
+
+    border-style: solid;
+    border-color: black;
+    border-radius: 10px;
+
+    padding-top: 40px;
+    margin-top: 10px;
+}
+
+.selectOptions {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    margin-top: 30px;
+}
+
+.buttonRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.buttonRow {
+    margin-top: 30px;
+}
+.button {
+    padding: 7px 20px;
+    background-color: rgb(83, 199, 252);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+
+    border-radius: 10px;
+}

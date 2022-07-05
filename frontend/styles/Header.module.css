@@ -1,0 +1,32 @@
+.header {
+    width: 100%;
+    display: flex;
+    height: fit-content;
+
+    background-color: aliceblue;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.menuItem {
+    padding: 20px;
+    font-size: 18px;
+}
+
+.menu {
+    padding-left: 100px;
+}
+
+.floatRight, .floatLeft {
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.login {
+    padding: 7px 25px;
+    background-color: rgb(135, 197, 255);
+
+    margin-right: 20px;
+}
