@@ -26,7 +26,7 @@ const Home: NextPage = ({options}: any) => {
               <div className={styles.button}>Next</div>
             </Link>
           </div>
-        <FormSlider options={options} question={'What are your favorite brands'} step={'Step 3 of 4'}/>
+        <FormSlider options={options} question={'What are your favorite brands'} step={'Step 3 of 4'} filter={'BRANDS'} />
       </div>
     </>
   )
