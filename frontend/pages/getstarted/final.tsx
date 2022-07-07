@@ -12,6 +12,16 @@ const Final = () => {
         console.log(productFilter);
         console.log(brandFilter);
         console.log(budgetFilter);
+
+        const params = new URLSearchParams();
+        params.append('product', productFilter as string);
+        params.append('brand', brandFilter as string);
+        params.append('gender', genderFilter as string);
+
+        fetch('/api/getitems', {method: 'POST', body: params})
+            .then(res => res.json())
+            .then(r => console.log(r))
+
     }, [])
 }
 
