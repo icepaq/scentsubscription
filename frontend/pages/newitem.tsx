@@ -12,6 +12,8 @@ const Home: NextPage = () => {
     const BRAND = useRef<string>();
     const PRICE = useRef<string>();
     const GENDER = useRef<string>();
+    const AMAZON = useRef<string>();
+    const IMAGE_1 = useRef<string>();
 
     const router = useRouter();
 
@@ -22,7 +24,8 @@ const Home: NextPage = () => {
         params.append('brand', BRAND.current as string);
         params.append('price', PRICE.current as string);
         params.append('gender', GENDER.current as string);
-
+        params.append('amazon', AMAZON.current as string);
+        params.append('image1', IMAGE_1.current as string);
 
         const r = await fetch('/api/newitem', {method: 'POST', body: params});
 
@@ -38,6 +41,8 @@ const Home: NextPage = () => {
                 <input className={styles.input} type='text' placeholder='Brand' onChange={(e) => {BRAND.current = e.target.value}} /> <br />
                 <input className={styles.input} type='text' placeholder='Price' onChange={(e) => {PRICE.current = e.target.value}} /> <br />
                 <input className={styles.input} type='text' placeholder='Gender' onChange={(e) => {GENDER.current = e.target.value}} /> <br />
+                <input className={styles.input} type='text' placeholder='Amazon Link' onChange={(e) => {AMAZON.current = e.target.value}} /> <br />
+                <input className={styles.input} type='text' placeholder='Image Link 1' onChange={(e) => {IMAGE_1.current = e.target.value}} /> <br />
 
                 <div className={styles.button} onClick={submit}>
                     Add Item
