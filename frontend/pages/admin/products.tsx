@@ -1,8 +1,9 @@
 import Header from '../components/header'
 import ProductCard from '../components/admin/productcard'
 import styles from '../../styles/ProductAdmin.module.css'
+import fetch from 'node-fetch'
 
-const Products = () => {
+const Products = ({products}: any) => {
     return (
         <>
             <Header />
@@ -12,13 +13,24 @@ const Products = () => {
                 <div className={styles.inputWrapper}>
                     <input className={styles.input} type="text" placeholder="Search by Name, Brand, Property or ID" />
                 </div>
-                <ProductCard />
-                <ProductCard />
-                <ProductCard />
+
+                {products.map((product: any) => {
+                    return <ProductCard product={product} />
+                })}
 
             </div>
         </>
     )
+}
+
+export async function getServerSideProps(context: any) {
+    const products = await fetch('http://localhost:3000/api/getallitems').then(res => res.json());
+
+    return {
+        props: {
+            products
+        }
+    }
 }
 
 export default Products
