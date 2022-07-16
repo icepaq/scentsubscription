@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 const ProductCard = ({ product }: any) => {
     return (
-        <Link href={`admin/product/${product._id}`}>
+        <Link href={`/admin/product/${product._id}`}>
         <div className={styles.productCard}>
             <div className={styles.productCardImageWrapper}>
                 <Image className={styles.productCardImage} src={'/diorsauvage.jpg'} width={70} height={160} />
