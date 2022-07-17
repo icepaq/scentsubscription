@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../../styles/GetStarted.module.css'
 import Header from '../components/header'
-import FormSlider from '../components/formslider'
+import BudgetSelector from '../components/budgetselector'
 import Link from 'next/link'
 
 const Home: NextPage = ({options}: any) => {
@@ -26,7 +26,7 @@ const Home: NextPage = ({options}: any) => {
               <div className={styles.button}>Next</div>
             </Link>
           </div>
-        <FormSlider options={options} question={'What is your budget'} step={'Step 4 of 4'} filter={'BUDGET'}/>
+        <BudgetSelector />
       </div>
     </>
   )

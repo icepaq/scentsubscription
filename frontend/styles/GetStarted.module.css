@@ -57,6 +57,7 @@
 .buttonRow {
     margin-top: 30px;
 }
+
 .button {
     padding: 7px 20px;
     background-color: rgb(83, 199, 252);
@@ -65,4 +66,22 @@
     cursor: pointer;
 
     border-radius: 10px;
+}
+
+.inputRange {
+    width: 400px;
+}
+
+.inputRangeText {
+    width: 40px;
+    text-align: center;
+}
+
+.inputRangeTextContainer {
+    margin: 0 auto;
+    width: 40px;
+}
+
+.inputRangeContainer {
+    margin-top: 30px;
 }
