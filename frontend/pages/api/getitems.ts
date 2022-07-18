@@ -43,22 +43,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const results = await r.toArray();  
 
     for ( let i = 0; i < results.length; i++ ) {
-        if ( results[i].product === "Fragrance" ) {
-            if ( results[i].monthly_price > budget['Fragrance'] ) {
-                results.splice(i, 1);
-            }
-        } else if ( results[i].product === "Car Refreshener" ) {
-            if ( results[i].monthly_price > budget['Car Refreshener'] ) {
-                results.splice(i, 1);
-            }
-        } else if ( results[i].product === "Air Refreshener" ) {
-            if ( results[i].monthly_price > budget['Air Refreshener'] ) {
-                results.splice(i, 1);
-            }
-        } else if ( results[i].product === "Scented Candles" ) {
-            if ( results[i].monthly_price > budget['Scented Candles'] ) {
-                results.splice(i, 1);
-            }
+        const product: string = results[i].product;
+        if ( results[i].monthly_price > budget[product] ) {
+            results.splice(i, 1);
         }
     }
 
