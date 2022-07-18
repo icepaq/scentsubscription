@@ -17,6 +17,7 @@ const Final = () => {
         params.append('product', productFilter as string);
         params.append('brand', brandFilter as string);
         params.append('gender', genderFilter as string);
+        params.append('budget', budgetFilter as string);
 
         fetch('/api/getitems', {method: 'POST', body: params})
             .then(res => res.json())
