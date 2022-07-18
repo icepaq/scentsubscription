@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { MongoClient } from 'mongodb';
 
-
+// Gets items based on user input
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const uri = process.env.MONGO_URI as string;
     const client = new MongoClient(uri);
