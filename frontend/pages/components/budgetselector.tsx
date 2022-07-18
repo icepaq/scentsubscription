@@ -6,6 +6,8 @@ import CategoryPriceSlider from './CategoryPriceSlider'
 const BudgetSelector = () => {
 
     const [categories, setCategories] = useState<string[]>([]);
+    const [budgets, setBudgets] = useState<{ [key: string]: number }>({});
+
     useEffect(() => {
         const categories = Cookies.get('PRODUCTS');
 
@@ -13,6 +15,15 @@ const BudgetSelector = () => {
         setCategories(JSON.parse(categories));
 
     }, [])
+
+    const updateBudget = (category: string, price: number) => {
+        const _budgets = { ...budgets };
+        _budgets[category] = price;
+        setBudgets(_budgets);
+
+        Cookies.set('BUDGET', JSON.stringify(_budgets));
+    }
+
     return (
         <>
             <div className={styles.formSlider}>
@@ -23,10 +34,9 @@ const BudgetSelector = () => {
                     {'What is your budget'}
                 </div>
                 <div className={styles.sliders}>
-
                     {
                         categories.map((title: any) => {
-                            return <CategoryPriceSlider title={title} range={50}/>
+                            return <CategoryPriceSlider title={title} range={'50'} updateBudget={updateBudget} />
                         })
                     }
                 </div>
