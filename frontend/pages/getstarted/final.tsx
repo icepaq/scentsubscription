@@ -3,30 +3,31 @@ import { useEffect, useState } from "react"
 import styles from '../../styles/Final.module.css'
 
 type Item = {
-    title: string,
-    gneder: string,
     name: string,
     product: string,
-    unit_price: number,
-    monthly_cost: number,
+    monthly_price: number,
 }
-
-type RecommendationsList = {
-    Fragrance?: Item,
-    Car_Refreshener?: Item,
-    Air_Refreshener?: Item,
-    Scented_Candle?: Item,
-}
-
 const Final = () => {
 
-    const [recommendations, setRecommendations] = useState<RecommendationsList>();
+    const [recommendations, setRecommendations] = useState<Item[]>([]);
     useEffect(() => {
         async function processRecommendations(_params: URLSearchParams) {
 
             const results = await fetch('/api/getitems', {method: 'POST', body: _params}).then(res => res.json());
             
-            console.log(results);
+            let tempRecommendations: Item[] = [];
+            for (const key in results) {
+
+                const item: Item = {
+                    name: results[key].name,
+                    product: results[key].product,
+                    monthly_price: results[key].monthly_price,
+                }
+
+                tempRecommendations.push(item);
+            }
+
+            setRecommendations(tempRecommendations);
         }
 
         const genderFilter = Cookies.get('GENDER');
@@ -56,7 +57,18 @@ const Final = () => {
                     Checkout
                 </div>
                 <div className={styles.items}>
-
+                    {
+                        recommendations.map((item: Item) => {
+                            return (
+                                <div className={styles.item}>
+                                    <div className={styles.itemTitle}>{item.name}</div>
+                                    <div className={styles.itemPrice}>{'$' + item.monthly_price + ' / month'}</div>
+                                    <div className={styles.itemImage}></div>
+                                    <div className={styles.itemCategory}>{item.product}</div>
+                                </div>
+                            )
+                        })
+                    }
                 </div>
             </div>
         </>
