@@ -9,7 +9,7 @@ const Product = ({ product }: any) => {
     const [gender, setGender] = useState(product.gender)
     const [imgur, setImgur] = useState(product.imgur_link)
     const [amazon, setAmazon] = useState(product.amazon)
-    const [product_name, setName] = useState(product.product)
+    const [product_name, setName] = useState(product.name)
     const [unit_cost, setUnitCost] = useState(product.unit_cost)
     const [monthly_price, setMonthlyPrice] = useState(product.monthly_price)
 

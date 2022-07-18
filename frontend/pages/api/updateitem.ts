@@ -10,7 +10,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const item = {
         name: req.body.item,
-        product: req.body.product,
         brand: req.body.brand,
         price: Number.parseInt(req.body.price),
         gender: req.body.gender,
