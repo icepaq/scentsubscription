@@ -32,14 +32,12 @@ const Final = () => {
 
         const genderFilter = Cookies.get('GENDER');
         const productFilter = Cookies.get('PRODUCTS');
-        const brandFilter = Cookies.get('BRANDS');
         const budgetFilter = Cookies.get('BUDGET');
 
         console.log(productFilter)
 
         const params = new URLSearchParams();
         params.append('product', productFilter as string);
-        params.append('brand', brandFilter as string);
         params.append('gender', genderFilter as string);
         params.append('budget', budgetFilter as string);
 

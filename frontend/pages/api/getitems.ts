@@ -12,7 +12,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const gender = JSON.parse(req.body.gender);
     const product = JSON.parse(req.body.product);
-    const brand = JSON.parse(req.body.brand);
     const budget = JSON.parse(req.body.budget)
 
     const collection = client.db("subscent").collection("items");

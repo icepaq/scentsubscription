@@ -18,7 +18,7 @@ const Home: NextPage = ({options}: any) => {
             Answer a few questions to get a suggested custom scent package
         </div>
         <div className={styles.buttonRow}>
-            <Link href="/getstarted/3">
+            <Link href="/getstarted/2">
               <div className={styles.button}>Back</div>
             </Link>
             <div className={styles.button}>Skip, I know what I want</div>

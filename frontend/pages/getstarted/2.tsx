@@ -22,7 +22,7 @@ const Home: NextPage = ({options}: any) => {
               <div className={styles.button}>Back</div>
             </Link>
             <div className={styles.button}>Skip, I know what I want</div>
-            <Link href="/getstarted/3">
+            <Link href="/getstarted/4">
               <div className={styles.button}>Next</div>
             </Link>
           </div>
