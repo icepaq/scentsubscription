@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react"
 import styles from '../../styles/Final.module.css'
 import { useRouter } from 'next/router'
 import Swal from 'sweetalert2'
-import Spinner from '../components/loader/spinner'
+import WhiteAndSpinner from '../components/loader/spinner_white'
 
 type Item = {
     _id: string,
@@ -58,6 +58,23 @@ const Final = () => {
         spinner.style.display = 'block';
     }
 
+    const fadeWhiteIn = async() => {
+        const doc = document.getElementById('white_background');
+
+        for(let i = 0; i <= 50; i++) {
+            await new Promise(r => setTimeout(r, 16));
+            doc?.setAttribute('style', 'display: block; background-color: rgba(255, 255, 255, ' + ((i*2) / 100) + ')');
+        }
+    }
+
+    const fadeOutSpinner = async() => {
+        const spinner = document.getElementById('spinner') as HTMLElement;
+        for(let i = 25; i >= 0; i--) {
+            await new Promise(r => setTimeout(r, 16));
+            spinner?.setAttribute('style', 'display: block; opacity: ' + ((i * 4) / 100));
+        }
+    }
+
     const checkout = async () => {
         let customerEmail: string | undefined = undefined;
 
@@ -68,14 +85,17 @@ const Final = () => {
         }).then((result: any) => {
             if (result.value) {
                 customerEmail = result.value;
-
+                
                 const params = new URLSearchParams();
                 params.append('email', result.value);
                 fetch('/api/storecredentials/createemail', {method: 'POST', body: params});
+
+                showSpinner();
+                fadeWhiteIn();
             }
         });
 
-        showSpinner();
+
 
         if (customerEmail) {
             const params = new URLSearchParams();
@@ -83,7 +103,8 @@ const Final = () => {
             params.append('customer_email', customerEmail);
             await fetch('/api/stripe/newprice', {method: 'POST', body: params})
                 .then(res => res.json())
-                .then((res: any) => {
+                .then(async (res: any) => {
+                    await fadeOutSpinner();
                     router.push(res.url);
                 })
         }
@@ -91,7 +112,7 @@ const Final = () => {
 
     return (
         <>
-            <Spinner />
+            <WhiteAndSpinner />
             <div className={styles.container}>
                 <div className={styles.title}>
                     Here are your suggestions
