@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react"
 import styles from '../../styles/Final.module.css'
 import { useRouter } from 'next/router'
 import Swal from 'sweetalert2'
+import Spinner from '../components/loader/spinner'
 
 type Item = {
     _id: string,
@@ -52,6 +53,11 @@ const Final = () => {
 
     }, [])
 
+    const showSpinner = () => {
+        const spinner = document.getElementById('spinner') as HTMLElement;
+        spinner.style.display = 'block';
+    }
+
     const checkout = async () => {
         let customerEmail: string | undefined = undefined;
 
@@ -69,6 +75,8 @@ const Final = () => {
             }
         });
 
+        showSpinner();
+
         if (customerEmail) {
             const params = new URLSearchParams();
             params.append('products', products.current.join(','));
@@ -83,6 +91,7 @@ const Final = () => {
 
     return (
         <>
+            <Spinner />
             <div className={styles.container}>
                 <div className={styles.title}>
                     Here are your suggestions
