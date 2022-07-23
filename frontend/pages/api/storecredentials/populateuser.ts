@@ -11,7 +11,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     await collection.insertOne({
         email: req.body.email, 
         time: new Date().getTime(),
-        
+        stripe_params: req.body
     });
 
     res.status(200).json({result: 'success'});
