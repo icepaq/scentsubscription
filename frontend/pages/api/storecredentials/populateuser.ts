@@ -8,11 +8,21 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     await client.connect();
 
     const collection = client.db("subscent").collection("users");
-    await collection.insertOne({
-        email: req.body.email, 
-        time: new Date().getTime(),
-        stripe_params: req.body
-    });
 
+    const customer = await collection.findOne({email: req.body.email as string});
+
+    if (customer) {
+        await collection.updateOne({email: req.body.email}, {$set: {
+            stripe_params: req.body,
+        }});
+    } else {
+        await collection.insertOne({
+            email: req.body.email, 
+            time: new Date().getTime(),
+            stripe_params: req.body
+        });
+    }
+
+    await client.close();
     res.status(200).json({result: 'success'});
 }

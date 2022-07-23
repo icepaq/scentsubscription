@@ -6,6 +6,5 @@ const stripe = new Stripe('sk_test_51LO0C6AzWmjsRUNxg2AgvH8jmU8P18XwLWpbGHyCrH8I
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const session = await stripe.checkout.sessions.retrieve(req.body.session_id);
-    console.log(session);
     res.status(200).json(session);
 }

@@ -4,10 +4,22 @@ import { MongoClient, ObjectId } from 'mongodb';
 import Stripe from 'stripe';
 const stripe = new Stripe('sk_test_51LO0C6AzWmjsRUNxg2AgvH8jmU8P18XwLWpbGHyCrH8I2U5yOuoNrjSANAxJxQtNp6tvkoZNeb0YBV1nbNUQ2LGa00J5gUzfA8', {apiVersion: '2020-08-27'});
 
+const uri = process.env.MONGO_URI as string;
+const client = new MongoClient(uri);
+
+
+const getCustomer = async (email: string) => {
+    await client.connect();
+    const collection = client.db("subscent").collection("users");
+
+    const customer = await collection.findOne({email: email}) as any;
+
+    await client.close();
+    return customer;
+}
+
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 
-    const uri = process.env.MONGO_URI as string;
-    const client = new MongoClient(uri);
     await client.connect();
     const collection = client.db("subscent").collection("items");
 
@@ -39,18 +51,37 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
     });
 
-    const checkOutSession = await stripe.checkout.sessions.create({
-        success_url: 'http://localhost:3000/getstarted/aftercheckout?session_id={CHECKOUT_SESSION_ID}',
-        cancel_url: 'http://localhost:3000/',
-        mode: 'subscription',
-        line_items: [
-            {price: priceObject.id, quantity: 1}
-        ],
-        shipping_address_collection: {
-            allowed_countries: ['US', 'CA']
-        },
-        customer_email: customerEmail,
-    });
+    let checkOutSession;
+    const customer = await getCustomer(customerEmail);
+    console.log(customerEmail)
+    console.log(customer)
+    if (customer) {
+        checkOutSession = await stripe.checkout.sessions.create({
+            success_url: 'http://localhost:3000/getstarted/aftercheckout?session_id={CHECKOUT_SESSION_ID}',
+            cancel_url: 'http://localhost:3000/',
+            mode: 'subscription',
+            line_items: [
+                {price: priceObject.id, quantity: 1}
+            ],
+            shipping_address_collection: {
+                allowed_countries: ['US', 'CA']
+            },
+            customer: customer.stripe_params.customer,
+        });
+    } else {
+        checkOutSession = await stripe.checkout.sessions.create({
+            success_url: 'http://localhost:3000/getstarted/aftercheckout?session_id={CHECKOUT_SESSION_ID}',
+            cancel_url: 'http://localhost:3000/',
+            mode: 'subscription',
+            line_items: [
+                {price: priceObject.id, quantity: 1}
+            ],
+            shipping_address_collection: {
+                allowed_countries: ['US', 'CA']
+            },
+            customer_email: customerEmail,
+        });
+    }
 
     res.status(200).json({status: 'success', url: checkOutSession.url});
 }
