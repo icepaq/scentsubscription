@@ -9,8 +9,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const uri = process.env.MONGO_URI as string;
     const client = new MongoClient(uri);
     await client.connect();
-
     const collection = client.db("subscent").collection("items");
+
+    const customerEmail = req.body.customer_email as string;
 
     let price: number = 0;
     let name: string = "";
@@ -23,7 +24,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     const product = await stripe.products.create({
-        name: name,
+        name: 'Scent Subs | ' + '$' + price,
     }).catch((err: any) => {
             res.status(400).json({ error: err });
     });
@@ -47,7 +48,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         ],
         shipping_address_collection: {
             allowed_countries: ['US', 'CA']
-        }
+        },
+        customer_email: customerEmail,
     });
 
     res.status(200).json({status: 'success', url: checkOutSession.url});

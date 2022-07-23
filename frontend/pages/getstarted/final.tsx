@@ -53,26 +53,32 @@ const Final = () => {
     }, [])
 
     const checkout = async () => {
+        let customerEmail: string | undefined = undefined;
 
         await Swal.fire({
             title: 'Please enter your email to continue',
             input: 'email',
             inputPlaceholder: 'anton@scentsubs.com',
         }).then((result: any) => {
-            const params = new URLSearchParams();
-            params.append('email', result.value);
+            if (result.value) {
+                customerEmail = result.value;
 
-            fetch('/api/storecredentials/createemail', {method: 'POST', body: params});
+                const params = new URLSearchParams();
+                params.append('email', result.value);
+                fetch('/api/storecredentials/createemail', {method: 'POST', body: params});
+            }
         });
 
-        const params = new URLSearchParams();
-        params.append('products', products.current.join(','));
-
-        await fetch('/api/stripe/newprice', {method: 'POST', body: params})
-            .then(res => res.json())
-            .then((res: any) => {
-                router.push(res.url);
-            })
+        if (customerEmail) {
+            const params = new URLSearchParams();
+            params.append('products', products.current.join(','));
+            params.append('customer_email', customerEmail);
+            await fetch('/api/stripe/newprice', {method: 'POST', body: params})
+                .then(res => res.json())
+                .then((res: any) => {
+                    router.push(res.url);
+                })
+        }
     }
 
     return (
