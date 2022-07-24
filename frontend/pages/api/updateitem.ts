@@ -14,11 +14,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         gender: req.body.gender,
         amazon: req.body.amazon,
         imgur: req.body.imgur,
-        unit_price: req.body.unit_price,
-        monthly_price: req.body.monthly_price
+        unit_price: Number.parseFloat(req.body.unit_price),
+        monthly_price: Number.parseFloat(req.body.monthly_price)
     }
-
-    console.log(req.body.id)
     
     const r = await collection.updateOne({_id: new ObjectId(req.body.id)}, {$set: item}, {upsert: true});
 
