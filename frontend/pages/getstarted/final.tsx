@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import Image from "next/image"
 import Swal from 'sweetalert2'
 import WhiteAndSpinner from '../components/loader/spinner_white'
+import { renderToString } from 'react-dom/server'
 
 type Item = {
     _id: string,
@@ -23,18 +24,16 @@ const Final = () => {
 
     useEffect(() => {
         async function processRecommendations(_params: URLSearchParams) {
-
             const results = await fetch('/api/getitems', {method: 'POST', body: _params}).then(res => res.json());
-
+            
             let tempRecommendations: Item[] = [];
-            for (const key in results) {
-
+            for (const key in results[0]) {
                 const item: Item = {
-                    _id: results[key]._id,
-                    name: results[key].name,
-                    product: results[key].product,
-                    monthly_price: results[key].monthly_price,
-                    imgur: results[key].imgur,
+                    _id: results[0][key]._id,
+                    name: results[0][key].name,
+                    product: results[0][key].product,
+                    monthly_price: results[0][key].monthly_price,
+                    imgur: results[0][key].imgur,
                 }
 
                 tempRecommendations.push(item);
@@ -98,8 +97,6 @@ const Final = () => {
             }
         });
 
-
-
         if (customerEmail) {
             const params = new URLSearchParams();
             params.append('products', products.current.join(','));
@@ -111,6 +108,12 @@ const Final = () => {
                     router.push(res.url);
                 })
         }
+    }
+
+    const showFutures = async () => {
+        Swal.fire({
+            html: renderToString(<><div>XD</div></>)
+        })
     }
 
     return (
@@ -132,14 +135,21 @@ const Final = () => {
                             }
                             
                             return (
-                                <div className={styles.item} key={'PRODUCTCARD_' + item._id}>
-                                    <div className={styles.itemTitle}>{item.name}</div>
-                                    <div className={styles.itemPrice}>{'$' + item.monthly_price + ' / month'}</div>
-                                    <div className={styles.itemImage}>
-                                        <Image src={item.imgur} width={70} height={160} />
+                                <>                                
+                                    <div className={styles.item} key={'PRODUCTCARD_' + item._id}>
+                                        <div className={styles.itemTitle}>{item.name}</div>
+                                        <div className={styles.itemPrice}>{'$' + item.monthly_price + ' / month'}</div>
+                                        <div className={styles.itemImage}>
+                                            <Image src={item.imgur} width={70} height={160} />
+                                        </div>
+                                        <div className={styles.itemCategory}>{item.product}</div>
+
+                                        <div className={styles.futureProducts} onClick={() => {showFutures()}} >
+                                            See Future Products
+                                        </div>
                                     </div>
-                                    <div className={styles.itemCategory}>{item.product}</div>
-                                </div>
+                                </>
+
                             )
                         })
                     }

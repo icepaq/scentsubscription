@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { MongoClient, ObjectId } from 'mongodb';
+import { MongoClient } from 'mongodb';
 
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -15,7 +15,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             amazon: req.body.amazon,
             imgur: req.body.imgur,
             unit_price: Number.parseFloat(req.body.unit_price),
-            monthly_price: Number.parseFloat(req.body.monthly_price)
+            monthly_price: Number.parseFloat(req.body.monthly_price),
+            product: req.body.product,
     });
     
     res.status(200).json(r);

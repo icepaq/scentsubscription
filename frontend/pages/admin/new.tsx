@@ -12,6 +12,7 @@ const Product = () => {
     const [product_name, setName] = useState('')
     const [unit_cost, setUnitCost] = useState('')
     const [monthly_price, setMonthlyPrice] = useState('')
+    const [product_category, setCategory] = useState('')
 
     const router = useRouter()
 
@@ -24,6 +25,7 @@ const Product = () => {
         params.append('name', product_name);
         params.append('unit_price', unit_cost);
         params.append('monthly_price',  monthly_price);
+        params.append('product', product_category);
 
         await fetch('http://localhost:3000/api/admin/newproduct', {method: 'POST', body: params});
         router.push('/admin/products')
@@ -44,6 +46,9 @@ const Product = () => {
 
                     <div className={styles.formTitle}>Product Name</div>
                     <input className={styles.formInput} type="text" value={product_name} onChange={(e) => setName(e.target.value)} />
+                    
+                    <div className={styles.formTitle}>Product Category</div>
+                    <input className={styles.formInput} type="text" value={product_category} onChange={(e) => setCategory(e.target.value)} />
 
                     <div className={styles.formTitle}>Gender</div>
                     <input className={styles.formInput} type="text" value={gender} onChange={(e) => setGender(e.target.value)} />

@@ -28,27 +28,35 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         product: { $in: product },
     });
 
+
     const results = await r.toArray();
-    const recommendationList: RecommendationList = {};
+    const recommendationList: RecommendationList[] = [{}, {}];    
 
-    for ( let i = 0; i < results.length; i++ ) {
-        
-        const product: string = results[i].product;
-        if ( results[i].monthly_price <= budget[product] ) {
+    for (let a = 0; a < 2; a++) {
+        let index = 0;
+        for ( let i = 0; i < results.length; i++ ) {
 
-            if (recommendationList[product] === undefined) {
+            const product: string = results[i].product;
+    
+            if ( results[i].monthly_price <= budget[product] ) {
+    
+                if (recommendationList[a][product] === undefined) {
+                    if (results[i].monthly_price <= budget[product]) {
+                        recommendationList[a][product] = results[i];
+                        index = i;
+                        results.splice(index, 1);
 
-                if (results[i].monthly_price <= budget[product]) {
-                    recommendationList[product] = results[i];
-                }
-            } else {
-
-                if (results[i].monthly_price <= budget[product] && results[i].monthly_price > recommendationList[product].monthly_price) {
-                    recommendationList[product] = results[i];
+                    }
+                } else {
+                    if (results[i].monthly_price <= budget[product] && results[i].monthly_price > recommendationList[a][product].monthly_price) {
+                        recommendationList[a][product] = results[i];
+                        index = i;
+                        results.splice(index, 1);
+                    }
                 }
             }
         }
     }
-
+    
     res.status(200).json(recommendationList);
 }

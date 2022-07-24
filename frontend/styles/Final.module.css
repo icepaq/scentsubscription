@@ -71,6 +71,12 @@
 }
 
 .itemCategory {
-    margin-top: 30px;
+    margin-top: 50px;
     color: rgb(122, 122, 122);
+}
+
+.futureProducts {
+    margin-top: 20px;
+    color: rgb(44, 44, 44);
+    cursor: pointer;
 }
