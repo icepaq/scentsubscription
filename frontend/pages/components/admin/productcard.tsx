@@ -1,13 +1,15 @@
 import styles from '../../../styles/ProductAdmin.module.css'
-import Image from 'next/image'
+import NextImage from 'next/image'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
 const ProductCard = ({ product }: any) => {
+
     return (
         <Link href={`/admin/product/${product._id}`}>
         <div className={styles.productCard}>
             <div className={styles.productCardImageWrapper}>
-                <Image className={styles.productCardImage} src={'/diorsauvage.jpg'} width={70} height={160} />
+                <NextImage className={styles.productCardImage} src={product.imgur || '/diorsauvage.jpg'} width={70} height={160} />
             </div>
             <div className={styles.productCardInfo}>
                 <div className={styles.productCardInfoRow}>

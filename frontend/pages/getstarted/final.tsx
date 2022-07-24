@@ -2,6 +2,7 @@ import Cookies from "js-cookie"
 import { useEffect, useRef, useState } from "react"
 import styles from '../../styles/Final.module.css'
 import { useRouter } from 'next/router'
+import Image from "next/image"
 import Swal from 'sweetalert2'
 import WhiteAndSpinner from '../components/loader/spinner_white'
 
@@ -10,6 +11,7 @@ type Item = {
     name: string,
     product: string,
     monthly_price: number,
+    imgur: string,
 }
 
 const Final = () => {
@@ -32,11 +34,12 @@ const Final = () => {
                     name: results[key].name,
                     product: results[key].product,
                     monthly_price: results[key].monthly_price,
+                    imgur: results[key].imgur,
                 }
 
                 tempRecommendations.push(item);
             }
-
+            
             setRecommendations(tempRecommendations);
         }
 
@@ -132,7 +135,9 @@ const Final = () => {
                                 <div className={styles.item} key={'PRODUCTCARD_' + item._id}>
                                     <div className={styles.itemTitle}>{item.name}</div>
                                     <div className={styles.itemPrice}>{'$' + item.monthly_price + ' / month'}</div>
-                                    <div className={styles.itemImage}></div>
+                                    <div className={styles.itemImage}>
+                                        <Image src={item.imgur} width={70} height={160} />
+                                    </div>
                                     <div className={styles.itemCategory}>{item.product}</div>
                                 </div>
                             )

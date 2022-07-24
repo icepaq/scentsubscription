@@ -21,7 +21,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             {gender: gender[0]},
             {gender: null},
             {gender: undefined},
-            {gender: "null"}
+            {gender: "null"},
+            {gender: ""}
         ],
 
         product: { $in: product },
