@@ -11,10 +11,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const item = {
         name: req.body.item,
         brand: req.body.brand,
-        price: Number.parseInt(req.body.price),
         gender: req.body.gender,
         amazon: req.body.amazon,
-        image1: req.body.imgur,
+        imgur: req.body.imgur,
         unit_price: req.body.unit_price,
         monthly_price: req.body.monthly_price
     }
@@ -23,7 +22,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     
     const r = await collection.updateOne({_id: new ObjectId(req.body.id)}, {$set: item}, {upsert: true});
 
-    console.log(r)
-
-    res.status(200).json({ name: 'John Doe' })
+    res.status(200).json(r)
 }
