@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import styles from '../../styles/Header.module.css'
 
 const Header = () => {
@@ -7,7 +8,7 @@ const Header = () => {
 
                 <div className={styles.floatLeft}>
                     <span className={styles.logo}>
-                        Scent Subscription
+                        <Image src={'/logo.png'} width={'127px'} height={'30px'} />
                     </span>
                     <span className={styles.menu}>
                         <span className={styles.menuItem}>

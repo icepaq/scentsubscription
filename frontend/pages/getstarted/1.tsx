@@ -5,6 +5,7 @@ import styles from '../../styles/GetStarted.module.css'
 import Header from '../components/header'
 import FormSlider from '../components/formslider'
 import Link from 'next/link'
+import WhiteAndSpinner from '../components/loader/spinner_white'
 
 const Home: NextPage = ({options}: any) => {
   return (

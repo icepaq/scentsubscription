@@ -1,5 +1,5 @@
 import styles from '../../styles/GetStarted.module.css'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Cookies from 'js-cookie'
 
 type CategoryPriceSliderProps = {
@@ -10,9 +10,18 @@ type CategoryPriceSliderProps = {
 
 const CategoryPriceSlider = ({title, range, updateBudget}: CategoryPriceSliderProps) => {
 
-    const [value, setValue] = useState('0');
+    const [value, setValue] = useState('10');
 
+    useEffect(() => {
+        if (title === 'Fragrance') { setValue('10') }
+        if (title === 'Car Refreshener') { setValue('2') }
+        if (title === 'Scented Candles') { setValue('15') }
+    }, [])
     const handleChange = (event: any) => {
+        const price = parseInt(event.target.value);
+        if (title === 'Fragrance') { if (price < 8 || price > 20) return }
+        if (title === 'Car Refreshener') { if (price < 2 || price > 5) return }
+        if (title === 'Scented Candles') { if (price < 5 || price > 20) return }
         setValue(event.target.value);
         updateBudget(title, parseInt(event.target.value));
     }

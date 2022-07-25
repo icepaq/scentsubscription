@@ -25,7 +25,6 @@ const Final = () => {
     useEffect(() => {
         async function processRecommendations(_params: URLSearchParams) {
             const results = await fetch('/api/getitems', {method: 'POST', body: _params}).then(res => res.json());
-            
             let tempRecommendations: Item[] = [];
             for (const key in results[0]) {
                 const item: Item = {
@@ -110,9 +109,33 @@ const Final = () => {
         }
     }
 
-    const showFutures = async () => {
+    const showFutures = async (product: string) => {
+        const futures = [];
+        for(let i = 1; i < recommendations.length; i++) {
+            if (recommendations[i].product === product) {
+                futures.push(recommendations[i]);
+            }
+        }
+
         Swal.fire({
-            html: renderToString(<><div>XD</div></>)
+            html: renderToString(
+                <><div>
+                    {
+                        futures.map((item: Item) => {
+                            return (
+                                <div className={styles.future}>
+                                    <span className={styles.futureElement}>
+                                        {item.name}
+                                    </span>
+                                    {/* <span className={styles.futureButton}>
+                                        Make this my First Product
+                                    </span> */}
+                                </div>
+                            )
+                        })
+                    }
+                    You will have the option to edit or remove these in your account settings
+                </div></>)
         })
     }
 
@@ -121,7 +144,7 @@ const Final = () => {
             <WhiteAndSpinner />
             <div className={styles.container}>
                 <div className={styles.title}>
-                    Here are your suggestions
+                    Here is your first month package
                 </div>
                 <div className={styles.checkout} onClick={checkout}>
                     Checkout
@@ -144,7 +167,7 @@ const Final = () => {
                                         </div>
                                         <div className={styles.itemCategory}>{item.product}</div>
 
-                                        <div className={styles.futureProducts} onClick={() => {showFutures()}} >
+                                        <div className={styles.futureProducts} onClick={() => {showFutures(item.product)}} >
                                             See Future Products
                                         </div>
                                     </div>

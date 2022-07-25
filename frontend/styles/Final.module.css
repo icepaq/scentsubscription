@@ -80,3 +80,17 @@
     color: rgb(44, 44, 44);
     cursor: pointer;
 }
+
+.future {
+    margin-bottom: 30px;
+}
+
+.futureButton {
+    background-color: rgb(78, 173, 255);
+    color: white;
+    text-align: center;
+    padding: 7px 15px;
+    margin-top: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+}
