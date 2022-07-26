@@ -19,9 +19,9 @@ const CategoryPriceSlider = ({title, range, updateBudget}: CategoryPriceSliderPr
     }, [])
     const handleChange = (event: any) => {
         const price = parseInt(event.target.value);
-        if (title === 'Fragrance') { if (price < 8 || price > 20) return }
-        if (title === 'Car Refreshener') { if (price < 2 || price > 5) return }
-        if (title === 'Scented Candles') { if (price < 5 || price > 20) return }
+        if (title === 'Fragrance') { if (price < 8) return }
+        if (title === 'Car Refreshener') { if (price < 2) return }
+        if (title === 'Scented Candles') { if (price < 5) return }
         setValue(event.target.value);
         updateBudget(title, parseInt(event.target.value));
     }

@@ -66,7 +66,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             shipping_address_collection: {
                 allowed_countries: ['US', 'CA']
             },
-            customer: customer.stripe_params.customer,
+            customer: customer.stripe_params?.customer,
         });
     } else {
         checkOutSession = await stripe.checkout.sessions.create({
