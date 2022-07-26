@@ -6,6 +6,7 @@ import Image from "next/image"
 import Swal from 'sweetalert2'
 import WhiteAndSpinner from '../components/loader/spinner_white'
 import { renderToString } from 'react-dom/server'
+import { RunFadeIn } from "../components/scripts"
 
 type Item = {
     _id: string,
@@ -40,6 +41,8 @@ const Final = () => {
             
             setRecommendations(tempRecommendations);
         }
+
+        RunFadeIn();
 
         const genderFilter = Cookies.get('GENDER');
         const productFilter = Cookies.get('PRODUCTS');

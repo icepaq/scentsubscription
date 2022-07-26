@@ -5,11 +5,22 @@ import styles from '../../styles/GetStarted.module.css'
 import Header from '../components/header'
 import FormSlider from '../components/formslider'
 import Link from 'next/link'
+import White from '../components/loader/white'
+import { useEffect } from 'react'
+import { RunFadeIn, RunFadeOut } from '../components/scripts'
+import { useRouter } from 'next/router'
 
 const Home: NextPage = ({options}: any) => {
+  useEffect(() => {
+    RunFadeIn()
+  }, [])
+
+  const router = useRouter();
+
   return (
     <>
       <Header />
+      <White />
       <div className={styles.wrapper}>
         <div className={styles.title}>
             Let's Get Started
@@ -18,13 +29,9 @@ const Home: NextPage = ({options}: any) => {
             Answer a few questions to get a suggested custom scent package
         </div>
         <div className={styles.buttonRow}>
-            <Link href="/getstarted/1">
-              <div className={styles.button}>Back</div>
-            </Link>
+            <div className={styles.button} onClick={() => {RunFadeOut(router, '/getstarted/1')}}>Back</div>
             <div className={styles.button}>Skip, I know what I want</div>
-            <Link href="/getstarted/4">
-              <div className={styles.button}>Next</div>
-            </Link>
+            <div className={styles.button} onClick={() => {RunFadeOut(router, '/getstarted/4')}}>Next</div>
           </div>
         <FormSlider options={options} question={'What products would you like'} step={'Step 2 of 4'} filter={'PRODUCTS'}/>
       </div>

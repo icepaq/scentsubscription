@@ -1,15 +1,23 @@
 import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../../styles/GetStarted.module.css'
 import Header from '../components/header'
 import FormSlider from '../components/formslider'
-import Link from 'next/link'
-import WhiteAndSpinner from '../components/loader/spinner_white'
+import White from '../components/loader/white'
+import { useRouter } from 'next/router'
+import { RunFadeIn, RunFadeOut } from '../components/scripts'
+import { useEffect } from 'react'
 
 const Home: NextPage = ({options}: any) => {
+
+  useEffect(() => {
+    RunFadeIn()
+  }, [])
+
+  const router = useRouter()
+
   return (
     <>
+      <White />
       <Header />
       <div className={styles.wrapper}>
         <div className={styles.title}>
@@ -21,9 +29,9 @@ const Home: NextPage = ({options}: any) => {
         <div className={styles.buttonRow}>
           <div className={styles.button}>Back</div>
           <div className={styles.button}>Skip, I know what I want</div>
-          <Link href="/getstarted/2">
-            <div className={styles.button}>Next</div>
-          </Link>
+          {/* <Link href="/getstarted/2"> */}
+            <div className={styles.button} onClick={() => {RunFadeOut(router, '/getstarted/2')}}>Next</div>
+          {/* </Link> */}
         </div>
         <FormSlider options={options} question={'What is your Gender'} step={'Step 1 of 4'} filter={'GENDER'}/>
       </div>
