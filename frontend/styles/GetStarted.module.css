@@ -68,9 +68,19 @@
     border-radius: 10px;
 }
 
-.inputRange {
-    width: 400px;
+/* Where the sceren width is less than 400px make the width 250px */
+@media screen and (max-width: 400px) {
+    .inputRange {
+        width: 250px;
+    }
 }
+
+@media screen and (min-width: 401px) {
+    .inputRange {
+        width: 400px;
+    }
+}
+
 
 .inputRangeText {
     width: 40px;
