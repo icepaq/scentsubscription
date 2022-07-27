@@ -32,8 +32,7 @@ const Home: NextPage = ({options}: any) => {
         </div>
         <div className={styles.buttonRow}>
             <div className={styles.button} onClick={() => {RunFadeOut(router, '/getstarted/2')}}>Back</div>
-            <div className={styles.button}>Skip, I know what I want</div>
-              <div className={styles.button} onClick={() => {RunFadeOut(router, '/getstarted/final')}}>Next</div>
+            <div className={styles.button} onClick={() => {RunFadeOut(router, '/getstarted/final')}}>Next</div>
             </div>
         <BudgetSelector />
       </div>

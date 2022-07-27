@@ -28,10 +28,7 @@ const Home: NextPage = ({options}: any) => {
         </div>
         <div className={styles.buttonRow}>
           <div className={styles.button}>Back</div>
-          <div className={styles.button}>Skip, I know what I want</div>
-          {/* <Link href="/getstarted/2"> */}
-            <div className={styles.button} onClick={() => {RunFadeOut(router, '/getstarted/2')}}>Next</div>
-          {/* </Link> */}
+          <div className={styles.button} onClick={() => {RunFadeOut(router, '/getstarted/2')}}>Next</div>
         </div>
         <FormSlider options={options} question={'What is your Gender'} step={'Step 1 of 4'} filter={'GENDER'}/>
       </div>
