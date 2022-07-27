@@ -1,36 +1,186 @@
-.header {
+.container {
+    width: 100%;
+    height: 100vh;
+  }
+  
+  /* Start Header */
+  .desktopheader {
+  
+    padding: 10px 10px;
+    flex-wrap: wrap;
+    display: flex;
+  
+    width: 80%;
+  
+    vertical-align: middle;
+  }
+  
+  .login {
+    position: absolute;
+    right: 0;
+    top: 0;
+  
+    width: 200px;
+  
+    padding: 10px 10px;
+  
+    cursor: pointer;
+  
+    text-align: right;
+  
+    margin-right: 50px;
+  }
+  
+  .mobileheader {
+  
+    position: fixed;
+    left: 0;
+    top: 0;
+  
+    padding: 0px 0px;
+  
+    gap: 10px 10px;
+  
+    width: 0;
+    height: 100vh;
+  
+    overflow: hidden;
+  
+    background-color: rgb(255, 255, 255);
+    opacity: 0.98;
+  
+    box-shadow: 2px 2px 10px rgb(79, 79, 79);
+    transition: 0.5s;
+  }
+  
+  .menuButton {
+    padding: 10px 10px;
+  }
+  
+  .desktopmenuitem {
+    margin-top: 10px;
+    font-size: 20px;
+    margin-left: 90px;
+  
+    cursor: pointer;
+  
+    color: #237faa;
+  
+    transition: 0.3s;
+  }
+  
+  .mobilemenuitem {
+    overflow: hidden;
+    width: 90%;
+    margin-top: 10px;
+    font-size: 16px;
+  
+    cursor: pointer;
+  
+    color: #237faa;
+  
+    transition: 0.3s;
+  }
+  
+  .desktopmenuitem:hover {
+    color: #005e8a;
+  }
+  
+  .mobileX {
+    float: right;
+    font-weight: bold;
+  }
+  /* End Header */
+  
+  /* Start Body */
+  .wrapper {
+    display: flex;
+    flex-wrap: wrap;
+  
+    width: 90%;
+    padding: 30px 30px;
+  }
+  
+  .title {
+    font-size: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+  }
+  
+  .filterRow {
     width: 100%;
     display: flex;
-    height: fit-content;
-
-    background-color: aliceblue;
-
+    flex-wrap: wrap;
+  
+    justify-content: flex-start;
+  }
+  
+  .filter {
+    margin-top: 10px;
+    margin-right: 10px;
+    font-size: 16px;
+  
+    padding: 5px 10px; 
+  }
+  
+  .difficultySelect {
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  
+  .testRow {
+    margin-top: 30px;
+    width: 100%;
+  }
+  
+  .testHeader {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-}
-
-.menuItem {
-    padding: 20px;
-    font-size: 18px;
-}
-
-.menu {
-    padding-left: 100px;
-}
-
-.floatRight, .floatLeft {
-    padding-top: 25px;
-    padding-bottom: 25px;
-}
-
-.login {
-    padding: 7px 25px;
-    background-color: rgb(135, 197, 255);
-
-    margin-right: 20px;
-}
-
-.logo {
+  
+    padding: 0px 10px;
+  
+    margin-top: 30px;
+    margin-bottom: -20px;
+  
+    width: 100%;
+    
+    cursor: pointer;
+  }
+  
+  .testHeaderItem {
+    font-size: 14px;
+    font-family: Arial, Helvetica, sans-serif;
+  
+    color: rgb(61, 61, 61);
+  
+    display: flex;
+  
+    width: 100px;
+  }
+  
+  .text {
+    font-size: 14px;
+    margin-top: 16px;
     margin-left: 10px;
-}
+  }
+  
+  .dropDownContent {
+    display: none;
+    background-color: white;
+  
+  }
+  
+  .dropDownButton {
+    margin-top: 10px;
+    padding: 7px 30px;
+  }
+  
+  .greeting {
+    margin-bottom: 5px;
+  }
+  
+  .login:hover .dropDownContent {
+    display: block;
+    position: absolute;
+  }
