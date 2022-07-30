@@ -1,0 +1,139 @@
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+.sidebar {
+    width: 15%;
+    height: 100vh;
+
+
+    background-color: antiquewhite;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-around;
+}
+
+.sidebarItem {
+    cursor: pointer;
+    width: 100%;
+    padding: 10px 20px;
+
+    transition: 0.3s;
+}
+
+.sidebarItem:hover {
+    background-color: rgb(226, 201, 167);
+}
+
+.sidebarItems {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    height: 30vh;
+}
+
+.wrapper {
+    width: 85%;
+
+    padding: 10px 10px;
+}
+
+.orders {
+    margin-top: 100px;
+}
+.order {
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10px;
+
+    width: 60%;
+    min-width: 300px;
+    height: 300px;
+
+    padding: 20px 20px;
+}
+
+.orderTitle {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.orderCategories {
+    margin-top: 30px;
+}
+
+.productTitle {
+    margin-top: 30px;
+    margin-bottom: 10px;
+
+    font-weight: bold;
+}
+
+.button {
+    background-color: rgb(108, 220, 112);
+    color: white;
+
+    font-weight: bold;
+    text-align: center;
+
+    border-radius: 10px;
+    width: 100%;
+
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.orderContent {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.orderContentLeft {
+    width: 60%;
+}
+
+.orderContentRight {
+    float: right;
+    width: 40%;
+}
+
+/* Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+  }
+  
+  /* Tooltip text */
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 400px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+  
+    /* Position the tooltip text */
+    position: absolute;
+    /* z-index: 2; */
+    bottom: 125%;
+    /* left: -1%; */
+    margin-left: -100px;
+  
+    /* Fade in tooltip */
+    opacity: 0;
+    transition: 0.3s;
+  }
+  
+  /* Show the tooltip text when you mouse over the tooltip container */
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+  }
