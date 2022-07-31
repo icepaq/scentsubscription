@@ -29,30 +29,36 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     });
 
 
-    const results = await r.toArray();
-    const recommendationList: RecommendationList[] = [{}, {}];    
+    const results = await r.toArray() as any;
+    const recommendationList: RecommendationList[] = [{}, {}, {}];    
+    console.log(budget['Car Refreshener'])
+    for (let a = 0; a < 3; a++) {
 
-    for (let a = 0; a < 2; a++) {
-        let index = 0;
-        for ( let i = 0; i < results.length; i++ ) {
+        const lengthHolder = results.length;
+        for ( let i = 0; i < lengthHolder; i++ ) {
+
+            if (results[i] == null ) {
+                continue;
+            }
 
             const product: string = results[i].product;
-    
             if ( results[i].monthly_price <= budget[product] ) {
-    
+
                 if (recommendationList[a][product] === undefined) {
+
                     if (results[i].monthly_price <= budget[product]) {
+                    
                         recommendationList[a][product] = results[i];
-                        index = i;
-                        results.splice(index, 1);
+                        results[i] = null;
 
                     }
                 } else {
                     if (results[i].monthly_price <= budget[product] && results[i].monthly_price > recommendationList[a][product].monthly_price) {
+                        
                         results.push(recommendationList[a][product]);
                         recommendationList[a][product] = results[i];
-                        index = i;
-                        results.splice(index, 1);
+                        results[i] = null;
+
                     }
                 }
             }
