@@ -49,6 +49,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     }
                 } else {
                     if (results[i].monthly_price <= budget[product] && results[i].monthly_price > recommendationList[a][product].monthly_price) {
+                        results.push(recommendationList[a][product]);
                         recommendationList[a][product] = results[i];
                         index = i;
                         results.splice(index, 1);
