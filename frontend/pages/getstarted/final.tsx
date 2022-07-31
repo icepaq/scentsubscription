@@ -19,6 +19,7 @@ type Item = {
 const Final = () => {
 
     const [recommendations, setRecommendations] = useState<Item[]>([]);
+    const [futureRecommendations, setFutureRecommendations] = useState<Item[]>([]);
 
     const products = useRef<string[]>([]);
     const router = useRouter();
@@ -38,8 +39,25 @@ const Final = () => {
 
                 tempRecommendations.push(item);
             }
+            console.log(results)
+
+            const _futureRecommendations: Item[] = [];
+            for (let i = 1; i < results.length; i++) {
+                for (const key in results[i]) {
+                    const item: Item = {
+                        _id: results[i][key]._id,
+                        name: results[i][key].name,
+                        product: results[i][key].product,
+                        monthly_price: results[i][key].monthly_price,
+                        imgur: results[i][key].imgur,
+                    }
+    
+                    _futureRecommendations.push(item);
+                }
+            }            
             
             setRecommendations(tempRecommendations);
+            setFutureRecommendations(_futureRecommendations);
         }
 
         RunFadeIn();
@@ -92,7 +110,13 @@ const Final = () => {
                 
                 const params = new URLSearchParams();
                 params.append('email', result.value);
+
+                const params2 = new URLSearchParams();
+                params.append('products', JSON.stringify(recommendations));
+                params.append('email', result.value);
+
                 fetch('/api/storecredentials/createemail', {method: 'POST', body: params});
+                fetch('/api/storerecommendations', {method: 'POST', body: params});
 
                 showSpinner();
                 fadeWhiteIn();
@@ -114,9 +138,9 @@ const Final = () => {
 
     const showFutures = async (product: string) => {
         const futures = [];
-        for(let i = 1; i < recommendations.length; i++) {
-            if (recommendations[i].product === product) {
-                futures.push(recommendations[i]);
+        for(let i = 0; i < futureRecommendations.length; i++) {
+            if (futureRecommendations[i].product === product) {
+                futures.push(futureRecommendations[i]);
             }
         }
 
