@@ -20,6 +20,7 @@ const Final = () => {
 
     const [recommendations, setRecommendations] = useState<Item[]>([]);
     const [futureRecommendations, setFutureRecommendations] = useState<Item[]>([]);
+    const [futureRecommendationsObject, setFutureRecommendationsObject] = useState<Item[][]>([]);
 
     const products = useRef<string[]>([]);
     const router = useRouter();
@@ -42,7 +43,9 @@ const Final = () => {
             console.log(results)
 
             const _futureRecommendations: Item[] = [];
+            const _futureRecommendationsObject: Item[][] = [];
             for (let i = 1; i < results.length; i++) {
+                let tempitem = [];
                 for (const key in results[i]) {
                     const item: Item = {
                         _id: results[i][key]._id,
@@ -51,13 +54,16 @@ const Final = () => {
                         monthly_price: results[i][key].monthly_price,
                         imgur: results[i][key].imgur,
                     }
-    
+                    tempitem.push(item);
                     _futureRecommendations.push(item);
+
                 }
+                _futureRecommendationsObject.push(tempitem);
             }            
             
             setRecommendations(tempRecommendations);
             setFutureRecommendations(_futureRecommendations);
+            setFutureRecommendationsObject(_futureRecommendationsObject);
         }
 
         RunFadeIn();
@@ -113,7 +119,7 @@ const Final = () => {
 
                 const params2 = new URLSearchParams();
                 params.append('products', JSON.stringify(recommendations));
-                params.append('futureProducts', JSON.stringify(futureRecommendations));
+                params.append('futureProducts', JSON.stringify(futureRecommendationsObject));
                 params.append('email', result.value);
 
                 fetch('/api/storecredentials/createemail', {method: 'POST', body: params});

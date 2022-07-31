@@ -35,6 +35,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         name += products[i].substring(16) + "_";
     }
 
+    price = Number.parseInt(price.toFixed(0));
+
     const product = await stripe.products.create({
         name: 'Scent Subs | ' + '$' + price,
     }).catch((err: any) => {
