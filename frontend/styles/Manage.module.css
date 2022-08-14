@@ -6,7 +6,7 @@
 .sidebar {
     width: 15%;
     height: 100vh;
-
+    position: fixed;
 
     background-color: antiquewhite;
 
@@ -38,6 +38,7 @@
 
 .wrapper {
     width: 85%;
+    margin-left: 15%;
 
     padding: 10px 10px;
 }
@@ -55,6 +56,7 @@
     height: 300px;
 
     padding: 20px 20px;
+    margin-bottom: 20px;
 }
 
 .orderTitle {
@@ -75,6 +77,21 @@
 
 .button {
     background-color: rgb(108, 220, 112);
+    color: white;
+
+    font-weight: bold;
+    text-align: center;
+
+    border-radius: 10px;
+    width: 100%;
+
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.cancelButton {
+    background-color: rgb(255, 98, 98);
     color: white;
 
     font-weight: bold;
