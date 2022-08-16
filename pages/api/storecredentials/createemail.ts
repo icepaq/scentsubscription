@@ -11,7 +11,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const customer = await collection.findOne({email: req.body.email});
 
     if(!customer) {
-        await collection.insertOne({email: req.body.email, time: new Date().getTime()});
+        await collection.insertOne({email: req.body.email[0], time: new Date().getTime()});
     }
 
     res.status(200).json({result: 'success'});

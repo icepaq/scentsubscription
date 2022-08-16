@@ -55,8 +55,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     let checkOutSession;
     const customer = await getCustomer(customerEmail);
-    console.log(customerEmail)
-    console.log(customer)
+
     if (customer) {
         checkOutSession = await stripe.checkout.sessions.create({
             success_url: 'http://localhost:3000/getstarted/aftercheckout?session_id={CHECKOUT_SESSION_ID}',

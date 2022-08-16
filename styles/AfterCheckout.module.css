@@ -2,6 +2,18 @@
     width: 40%;
     margin: 0 auto;
     margin-top: 100px;
+
+    border-radius: 10px;
+    background-color: #fffaeb;
+
+    height: 80vh;
+    margin-top: 10vh;
+
+    padding: 20px 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .title {
@@ -34,5 +46,13 @@
 }
 
 .submit {
-    
+    border-radius: 10px;
+    background-color: rgb(146, 237, 146);
+    padding: 7px 55px;
+}
+
+.input {
+    border-radius: 10px;
+    padding: 5px 20px;
+    font-size: 16px;
 }
