@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import styles from '../../styles/Manage.module.css'
 import Swal from 'sweetalert2'
+import Cookie from 'js-cookie'
+import { useRouter } from 'next/router'
 
 type OrderEntry = {
     _id: string,
@@ -10,18 +12,29 @@ type OrderEntry = {
     imgur: string,
 }
 
+
 const Main = () => {
 
     const [orders, setOrders] = useState([]);
     const [categories, setCategories] = useState([]);
 
+    const router = useRouter();
+
     useEffect(() => {
         const apiCall = async () => {
             const params = new URLSearchParams();
-            params.append('email', 'anton.reza@outlook.com');
+            params.append('email', Cookie.get('email') as string);
+            params.append('token', Cookie.get('token') as string);
             const res = await fetch('http://localhost:3000/api/orders/getorders', {method: 'POST', body: params}).then(res => res.json());
             setOrders(res.orders);
             setCategories(res.categories);
+        }
+
+        const token = Cookie.get('token');
+        const email = Cookie.get('email');
+
+        if (!token || !email) {
+            router.push('/login');
         }
 
         apiCall()
