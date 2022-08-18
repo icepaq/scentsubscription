@@ -99,7 +99,7 @@ const Main = () => {
                 </div>
                 <div className={styles.wrapper}>
                     <div className={styles.title}>
-                        <h1>Hi Anton,</h1>
+                        <h1>Your Orders</h1>
                     </div>
 
                     <div className={styles.orders}>
