@@ -64,7 +64,7 @@ const FormSlider = ({options, question, step, filter}: any): any => {
                 <div className={styles.selectOptions}>
 
                     {
-                        options.map((option: any) => {
+                        options?.map((option: any) => {
                             console.log(option)
                             return <OptionSelect options={option} select={select} key={''}/>
                         })
