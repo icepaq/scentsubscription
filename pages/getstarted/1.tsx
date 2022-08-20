@@ -21,7 +21,7 @@ const Home: NextPage = ({options}: any) => {
       <Header />
       <div className={styles.wrapper}>
         <div className={styles.title}>
-            Let's Get Started
+            Let&apos;s Get Started
         </div>
         <div className={styles.subtitle}>
             Answer a few questions to get a suggested custom scent package

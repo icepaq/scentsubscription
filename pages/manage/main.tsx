@@ -105,7 +105,7 @@ const Main = () => {
                     <div className={styles.orders}>
                         {orders?.map((order: any) => {
                             return (
-                                <div className={styles.order}>
+                                <div className={styles.order} key={''}>
                                     <div className={styles.orderTitle}>
                                         { monthNumberToName(order.month) }
                                     </div>
@@ -123,7 +123,7 @@ const Main = () => {
                                             order.order.map((item: OrderEntry) => {
                                                 return (
                                                     <>
-                                                        <div className={styles.product}>
+                                                        <div className={styles.product} key={''}>
                                                             {item.name}
                                                         </div>
                                                     </>

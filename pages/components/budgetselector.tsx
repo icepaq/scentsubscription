@@ -36,7 +36,7 @@ const BudgetSelector = () => {
                 <div className={styles.sliders}>
                     {
                         categories.map((title: any) => {
-                            return <CategoryPriceSlider title={title} range={'50'} updateBudget={updateBudget} />
+                            return <CategoryPriceSlider title={title} range={'50'} updateBudget={updateBudget} key={'key_' + title}/>
                         })
                     }
                 </div>

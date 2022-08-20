@@ -157,7 +157,7 @@ const Final = () => {
                     {
                         futures.map((item: Item) => {
                             return (
-                                <div className={styles.future}>
+                                <div className={styles.future} key={'key_' + item.name}>
                                     <span className={styles.futureElement}>
                                         {item.name}
                                     </span>
