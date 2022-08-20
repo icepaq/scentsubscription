@@ -15,7 +15,7 @@ const Products = ({products}: any) => {
                 </div>
 
                 {products.map((product: any) => {
-                    return <ProductCard product={product} key={'key_' + product._id}/>
+                    return <ProductCard product={product} key={'key_'}/>
                 })}
 
             </div>

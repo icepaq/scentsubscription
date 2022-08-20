@@ -66,7 +66,7 @@ const FormSlider = ({options, question, step, filter}: any): any => {
                     {
                         options.map((option: any) => {
                             console.log(option)
-                            return <OptionSelect options={option} select={select} key={option.id}/>
+                            return <OptionSelect options={option} select={select} key={''}/>
                         })
                     }
                 </div>
