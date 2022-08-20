@@ -24,7 +24,7 @@ const Products = ({products}: any) => {
 }
 
 export async function getServerSideProps(context: any) {
-    const products = await fetch('http://localhost:3000/api/getallitems').then(res => res.json());
+    const products = await fetch(process.env.SITE_URL + '/api/getallitems').then(res => res.json());
 
     return {
         props: {

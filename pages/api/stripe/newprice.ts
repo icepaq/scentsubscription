@@ -58,8 +58,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     if (customer) {
         checkOutSession = await stripe.checkout.sessions.create({
-            success_url: 'http://localhost:3000/getstarted/aftercheckout?session_id={CHECKOUT_SESSION_ID}',
-            cancel_url: 'http://localhost:3000/',
+            success_url: process.env.SITE_URL + '/getstarted/aftercheckout?session_id={CHECKOUT_SESSION_ID}',
+            cancel_url: process.env.SITE_URL as string,
             mode: 'subscription',
             line_items: [
                 {price: priceObject.id, quantity: 1}
@@ -71,8 +71,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         });
     } else {
         checkOutSession = await stripe.checkout.sessions.create({
-            success_url: 'http://localhost:3000/getstarted/aftercheckout?session_id={CHECKOUT_SESSION_ID}',
-            cancel_url: 'http://localhost:3000/',
+            success_url: process.env.SITE_URL + '/getstarted/aftercheckout?session_id={CHECKOUT_SESSION_ID}',
+            cancel_url: process.env.SITE_URL as string,
             mode: 'subscription',
             line_items: [
                 {price: priceObject.id, quantity: 1}

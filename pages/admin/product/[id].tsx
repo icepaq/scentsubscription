@@ -26,7 +26,7 @@ const Product = ({ product }: any) => {
         params.append('monthly_price', monthly_price);
         params.append('id', product._id);
 
-        fetch('http://localhost:3000/api/updateitem', {method: 'POST', body: params});
+        fetch('/api/updateitem', {method: 'POST', body: params});
         router.push('/admin/products')
     }
 
@@ -73,7 +73,7 @@ export async function getServerSideProps(context: any) {
     const params = new URLSearchParams();
     params.append('id', id);
 
-    const product = await nodefetch(`http://localhost:3000/api/getsingleitem/`, { method: 'POST', body: params }).then(res => res.json());
+    const product = await nodefetch(process.env.SITE_URL + `/api/getsingleitem/`, { method: 'POST', body: params }).then(res => res.json());
     return {
         props: {
             product

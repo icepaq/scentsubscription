@@ -27,7 +27,7 @@ const Product = () => {
         params.append('monthly_price',  monthly_price);
         params.append('product', product_category);
 
-        await fetch('http://localhost:3000/api/admin/newproduct', {method: 'POST', body: params});
+        await fetch('/api/admin/newproduct', {method: 'POST', body: params});
         router.push('/admin/products')
     }
 
