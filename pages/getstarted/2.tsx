@@ -7,7 +7,7 @@ import FormSlider from '../components/formslider'
 import Link from 'next/link'
 import White from '../components/loader/white'
 import { useEffect } from 'react'
-import { RunFadeIn, RunFadeOut } from '../components/scripts'
+import { RunFadeIn, RunFadeOut } from '../../scripts/scripts'
 import { useRouter } from 'next/router'
 
 const Home: NextPage = ({options}: any) => {

@@ -6,10 +6,10 @@ import Header from '../components/header'
 import BudgetSelector from '../components/budgetselector'
 import Link from 'next/link'
 import { useEffect } from 'react'
-import { RunFadeIn } from '../components/scripts'
+import { RunFadeIn } from '../../scripts/scripts'
 import White from '../components/loader/white'
 import { useRouter } from 'next/router'
-import { RunFadeOut } from '../components/scripts'
+import { RunFadeOut } from '../../scripts/scripts'
 
 const Home: NextPage = ({options}: any) => {
 

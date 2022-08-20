@@ -6,7 +6,7 @@ import Image from "next/image"
 import Swal from 'sweetalert2'
 import WhiteAndSpinner from '../components/loader/spinner_white'
 import { renderToString } from 'react-dom/server'
-import { RunFadeIn } from "../components/scripts"
+import { RunFadeIn } from "../../scripts/scripts"
 
 type Item = {
     _id: string,
