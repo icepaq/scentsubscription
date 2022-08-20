@@ -1,13 +1,8 @@
 import type { NextPage } from 'next'
-import Head from 'next/head'
 import styles from '../../styles/Header.module.css'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import Cookie from 'js-cookie'
-import { ethers } from "ethers";
-import Swal from 'sweetalert2'
-import Cookies from 'js-cookie'
 import { useRouter } from 'next/router'
 
 
