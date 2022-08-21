@@ -71,7 +71,8 @@ const Header: NextPage = () => {
         return <></>
     }
 
-    return windowRatio > 1.3 ? deskTopHeader : mobileHeader;
+    // return windowRatio > 1.3 ? deskTopHeader : mobileHeader;
+    return <div className={''}></div>
 }
 
 export default Header

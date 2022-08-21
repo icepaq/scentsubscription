@@ -42,16 +42,8 @@ export function getServerSideProps(context: any) {
   const optionData = [
       {
           id: 1,
-          text: 'Fragrance',
-          icon: '/chanel.jpg',
-          width: '150px',
-          height: '150px',
-      },
-
-      {
-          id: 2,
-          text: 'Air Refreshener',
-          icon: '/febreeze.webp',
+          text: 'Fragrances',
+          icon: '/squaredior.png',
           width: '150px',
           height: '150px',
       },
@@ -59,7 +51,7 @@ export function getServerSideProps(context: any) {
       {
           id: 3,
           text: 'Car Refreshener',
-          icon: '/carrefresheners.jpg',
+          icon: '/carrefresheners.png',
           width: '100px',
           height: '150px',
       },
