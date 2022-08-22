@@ -79,14 +79,6 @@ const Main = () => {
         })
     }
 
-    const showCancelOrder = (month: number) => {
-        const cancelButton = <>
-            <div className={styles.cancelButton} onClick={() => reOrder(month)}>Cancel Order</div>
-        </>
-        console.log(month, new Date().getMonth())
-        return (month > new Date().getMonth() ? cancelButton : null);
-    }
-
     return (
         <>
             <div className={styles.container}>
@@ -138,7 +130,6 @@ const Main = () => {
                                                 <span className={styles.tooltiptext}>If you liked a certain product in this package, you can add it to a future package</span>
                                                 Order Specific Product Again
                                             </div>
-                                            { showCancelOrder(order.month) }
                                         </div>
 
                                     </div>
