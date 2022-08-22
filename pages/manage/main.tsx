@@ -73,6 +73,15 @@ const Main = () => {
         }
     }
 
+    const showEditOrder = (month: number) => {
+        const orderButton = <>
+            <div className={styles.cancelButton} onClick={() => reOrder(month)}>Edit Order</div>
+        </>
+        console.log(month, new Date().getMonth())
+        return (month > new Date().getMonth() ? orderButton : null);
+    }
+
+
     const reOrder = (e: any) => {
         Swal.fire({
             title: 'Feature Coming Soon',
@@ -129,6 +138,7 @@ const Main = () => {
                                                 <span className={styles.tooltiptext}>If you liked a certain product in this package, you can add it to a future package</span>
                                                 Order Specific Product Again
                                             </div>
+                                            { showEditOrder(order.month) }
                                         </div>
 
                                     </div>
