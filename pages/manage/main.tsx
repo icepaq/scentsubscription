@@ -84,8 +84,7 @@ const Main = () => {
             <div className={styles.container}>
                 <div className={styles.sidebar}>
                     <div className={styles.sidebarItems}>
-                        <div className={styles.sidebarItem}>Future Orders</div>
-                        <div className={styles.sidebarItem}>Past Orders</div>
+                        <div className={styles.sidebarItem}>Orders</div>
                         <div className={styles.sidebarItem}>Account Settings</div>
                     </div>
                 </div>
