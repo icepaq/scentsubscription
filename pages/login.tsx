@@ -21,7 +21,7 @@ const Login = () => {
             Cookies.set('token', r.token);
             Cookies.set('email', email);
 
-            router.push('/manage/main');
+            router.push('/manage/orders');
         } else {
             Swal.fire({
                 title: 'Error',
