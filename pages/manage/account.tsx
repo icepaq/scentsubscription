@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "../../styles/Account.module.css";
 import Sidebar from "../components/sidebar";
 import Cookies from "js-cookie";
+import Swal from "sweetalert2";
 import { useRouter } from "next/router";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL;
@@ -15,6 +16,8 @@ const Account = () => {
     const [state, setState] = useState("");
     const [country, setCountry] = useState("");
     const [postal_code, setPostalCode] = useState("");
+
+    const [cancelled, setCancelled] = useState(false);
 
     const router = useRouter();
 
@@ -34,6 +37,7 @@ const Account = () => {
                 setState(r.user.stripe_params.state);
                 setCountry(r.user.stripe_params.country);
                 setPostalCode(r.user.stripe_params.postal_code);
+                setCancelled(r.user.cancelled)
             }
         }
 
@@ -57,6 +61,24 @@ const Account = () => {
 
         router.reload();
         
+    }
+
+    const cancel = async (e: any) => {
+        // Create a sweet alert to ask user for password, then check password against backend
+       const r = await Swal.fire({
+            title: 'Are you sure?',
+            text: "Please enter your password to verify",
+            input: 'password',
+        }).then(r => r.value);
+
+        if (r) {
+            const params = new URLSearchParams();
+            params.append("email", Cookies.get("email") as string);
+            params.append("password", r);
+            await fetch(SITE_URL + "/api/stripe/cancel", { body: params, method: "POST" }).then(res => res.json());
+
+            router.reload();
+        }
     }
 
     return (
@@ -103,7 +125,7 @@ const Account = () => {
                     </div>
                     <div className={styles.box}>
                         <div className={styles.button}>Get Help</div>
-                        <div className={styles.button}>Cancel Subscription</div>
+                        <div className={styles.button} onClick={cancel}>{cancelled ? 'Renew Subscription' : 'Cancel Subscription'}</div>
                     </div>
                 </div>
             </div>
