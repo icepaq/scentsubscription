@@ -116,11 +116,8 @@ const Final = () => {
                 
                 const params = new URLSearchParams();
                 params.append('email', result.value);
-
-                const params2 = new URLSearchParams();
                 params.append('products', JSON.stringify(recommendations));
                 params.append('futureProducts', JSON.stringify(futureRecommendationsObject));
-                params.append('email', result.value);
 
                 fetch('/api/storecredentials/createemail', {method: 'POST', body: params});
                 fetch('/api/storerecommendations', {method: 'POST', body: params});
