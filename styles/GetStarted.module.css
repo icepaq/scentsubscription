@@ -17,6 +17,18 @@
     /* max-width: 50%; */
 }
 
+.cardTitle {
+    margin-top: -20px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.cardPrice {
+    margin-top: 50px;
+    font-size: 32px;
+    font-weight: bold;
+}
+
 .formSlider {
     margin-top: 50px;
     text-align: center;

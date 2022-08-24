@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import styles from '../../styles/GetStarted.module.css'
 import Cookies from 'js-cookie'
 import CategoryPriceSlider from './CategoryPriceSlider'
+import PlanSelector from './PlanSelector'
 
 const BudgetSelector = () => {
 
@@ -36,7 +37,11 @@ const BudgetSelector = () => {
                 <div className={styles.sliders}>
                     {
                         categories.map((title: any) => {
-                            return <CategoryPriceSlider title={title} range={'50'} updateBudget={updateBudget} key={'key_' + title}/>
+                            if (title == 'Fragrances') {
+                                return <PlanSelector />
+                            } else {
+                                return <CategoryPriceSlider title={title} range={'50'} updateBudget={updateBudget} key={'key_' + title}/>
+                            }
                         })
                     }
                 </div>
