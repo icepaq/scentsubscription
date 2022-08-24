@@ -18,7 +18,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     console.log('------------------------------------------------------');
     console.log(rawFutureOrders)
     const orders = [];
-    orders.push({month: month, order: rawOrders});
+    orders.push({month: month + 1, date: date, year: year, order: rawOrders});
 
     let adjustedMonth = month;
     for(let i = 0; i < rawFutureOrders.length; i++) {
