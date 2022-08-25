@@ -16,6 +16,7 @@ const Account = () => {
     const [state, setState] = useState("");
     const [country, setCountry] = useState("");
     const [postal_code, setPostalCode] = useState("");
+    const [plan, setPlan] = useState("");
 
     const [cancelled, setCancelled] = useState(false);
 
@@ -37,7 +38,8 @@ const Account = () => {
                 setState(r.user.stripe_params.state);
                 setCountry(r.user.stripe_params.country);
                 setPostalCode(r.user.stripe_params.postal_code);
-                setCancelled(r.user.cancelled)
+                setCancelled(r.user.cancelled);
+                setPlan(r.user.stripe_params.plan);
             }
         }
 
@@ -124,6 +126,7 @@ const Account = () => {
                         <div className={styles.button} onClick={updateUser}>Update Profile</div>
                     </div>
                     <div className={styles.box}>
+                        <div className={styles.inputCombo}>Current Plan - {'$' + (Number.parseInt(plan) / 100).toFixed(2) + ' / month'}</div>
                         <div className={styles.button}>Get Help</div>
                         <div className={styles.button} onClick={cancel}>{cancelled ? 'Renew Subscription' : 'Cancel Subscription'}</div>
                     </div>
