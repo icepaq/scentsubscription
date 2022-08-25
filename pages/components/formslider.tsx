@@ -35,8 +35,6 @@ const FormSlider = ({options, question, step, filter}: any): any => {
             Cookie.set(filter, JSON.stringify(selectedItemsFilters.current));
             Cookie.set(filter + '_number', JSON.stringify(selectedItems.current));
 
-            console.log(selectedItemsFilters.current);
-
             return;
         }
 
@@ -47,9 +45,6 @@ const FormSlider = ({options, question, step, filter}: any): any => {
 
         Cookie.set(filter, JSON.stringify(selectedItemsFilters.current));
         Cookie.set(filter + '_number', JSON.stringify(selectedItems.current));
-
-        console.log(selectedItemsFilters.current);
-        console.log(Cookie.get(filter));
     }
 
     return (
