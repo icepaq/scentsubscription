@@ -35,6 +35,7 @@ const AfterCheckout = () => {
                 stripe_params.append("email", data.customer_details.email);
                 stripe_params.append("name", data.customer_details.name);
                 stripe_params.append("phone", data.customer_details.phone);
+                stripe_params.append("plan", data.plan);
 
                 fetch('/api/storecredentials/populateuser', { method: 'POST', body: stripe_params })
             })
