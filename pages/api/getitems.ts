@@ -31,7 +31,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const results = await r.toArray() as any;
     const recommendationList: RecommendationList[] = [{}, {}, {}];    
-    console.log(budget['Car Refreshener'])
+
     for (let a = 0; a < 3; a++) {
 
         const lengthHolder = results.length;

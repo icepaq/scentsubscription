@@ -42,7 +42,7 @@ export function getServerSideProps(context: any) {
   const optionData = [
       {
           id: 1,
-          text: 'Fragrances',
+          text: 'Fragrance',
           icon: '/squaredior.png',
           width: '150px',
           height: '150px',

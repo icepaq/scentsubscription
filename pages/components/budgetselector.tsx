@@ -37,7 +37,7 @@ const BudgetSelector = () => {
                 <div className={styles.sliders}>
                     {
                         categories.map((title: any) => {
-                            if (title == 'Fragrances') {
+                            if (title == 'Fragrance') {
                                 return <PlanSelector title={title} updateBudget={updateBudget} key={'key_' + title} />
                             } else {
                                 return <CategoryPriceSlider title={title} range={'50'} updateBudget={updateBudget} key={'key_' + title}/>
