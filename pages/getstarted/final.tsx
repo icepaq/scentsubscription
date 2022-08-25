@@ -192,7 +192,6 @@ const Final = () => {
                                 <>                                
                                     <div className={styles.item} key={'PRODUCTCARD_' + item._id}>
                                         <div className={styles.itemTitle}>{item.name}</div>
-                                        <div className={styles.itemPrice}>{'$' + item.monthly_price + ' / month'}</div>
                                         <div className={styles.itemImage}>
                                             <Image src={item.imgur} width={70} height={160} />
                                         </div>
