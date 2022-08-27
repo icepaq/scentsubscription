@@ -104,6 +104,11 @@ const Main = () => {
 
                     <div className={styles.orders}>
                         {orders?.map((order: any) => {
+                            
+                            if(order.order.length < 1) {
+                                return;
+                            } 
+
                             return (
                                 <div className={styles.order} key={''}>
                                     <div className={styles.orderTitle}>

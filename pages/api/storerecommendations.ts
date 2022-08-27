@@ -15,8 +15,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const rawFutureOrders = JSON.parse(req.body.futureProducts);
 
-    console.log('------------------------------------------------------');
-    console.log(rawFutureOrders)
     const orders = [];
     orders.push({month: month + 1, date: date, year: year, order: rawOrders});
 
@@ -31,9 +29,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
         orders.push({month: adjustedMonth + 1, date: date, year: year, order: rawFutureOrders[i]});
     }
-    
 
-    await collection.insertOne({email: req.body.email, orders: orders});
+    const r = await collection.insertOne({email: req.body.email, filters: { gender: JSON.parse(req.body.gender), products: JSON.parse(req.body.productfilter) }, orders: orders});
 
     res.status(200).json({ message: 'success' })
 }

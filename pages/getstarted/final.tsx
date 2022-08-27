@@ -118,6 +118,8 @@ const Final = () => {
                 params.append('email', result.value);
                 params.append('products', JSON.stringify(recommendations));
                 params.append('futureProducts', JSON.stringify(futureRecommendationsObject));
+                params.append('gender', Cookies.get('GENDER') as string);
+                params.append('productfilter', Cookies.get('PRODUCTS') as string);
 
                 fetch('/api/storecredentials/createemail', {method: 'POST', body: params});
                 fetch('/api/storerecommendations', {method: 'POST', body: params});
