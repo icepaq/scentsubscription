@@ -43,6 +43,13 @@ const Account = () => {
             }
         }
 
+        const token = Cookies.get('token');
+        const email = Cookies.get('email');
+
+        if (!token || !email) {
+            router.push('/login');
+        }
+
         main();
 
     }, [])
