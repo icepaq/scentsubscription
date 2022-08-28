@@ -68,8 +68,7 @@ const Account = () => {
 
         await fetch(SITE_URL + "/api/auth/updateuser", { body: params, method: "POST" }).then(res => res.json());
 
-        router.reload();
-        
+        router.reload();        
     }
 
     const cancel = async (e: any) => {
@@ -88,6 +87,30 @@ const Account = () => {
 
             router.reload();
         }
+    }
+
+    const changePlan = async (e: any) => {
+        const response = await Swal.fire({
+            title: 'Changing Plans',
+            text: 'You are changing your plan to ' + plan == '3500' ? 'Basic' : 'Premium',
+            icon: 'info',
+            showCancelButton: true,
+        });
+
+        if (!response.isConfirmed) {
+            return;
+        }
+
+        const params = new URLSearchParams();
+        params.append("email", Cookies.get("email") as string);
+        if (plan == '3500') {
+            params.append("price", "1500");
+        } else {
+            params.append("price", "3500");
+        }
+
+        await fetch(SITE_URL + "/api/stripe/updatesubscription", { body: params, method: "POST" }).then(res => res.json());
+        router.reload();
     }
 
     return (
@@ -135,6 +158,7 @@ const Account = () => {
                     <div className={styles.box}>
                         <div className={styles.inputCombo}>Current Plan - {'$' + (Number.parseInt(plan) / 100).toFixed(2) + ' / month'}</div>
                         <div className={styles.button}>Get Help</div>
+                        <div className={styles.button} onClick={changePlan}>{plan == '1500'? 'Upgrade Plan' : 'Downgrade Plan'}</div>
                         <div className={styles.button} onClick={cancel}>{cancelled ? 'Renew Subscription' : 'Cancel Subscription'}</div>
                     </div>
                 </div>
