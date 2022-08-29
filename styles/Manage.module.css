@@ -1,64 +1,120 @@
-.container {
-    display: flex;
-    flex-direction: row;
-}
-
-.sidebar {
-    width: 15%;
-    height: 100vh;
-    position: fixed;
-
-    background-color: #BC9960;
-
-    display: flex;
-    flex-direction: column;
-
-    justify-content: space-around;
-}
-
-.sidebarItem {
-    cursor: pointer;
-    width: 100%;
-    padding: 10px 20px;
-
-    transition: 0.3s;
-}
-
-.sidebarItem:hover {
-    background-color: rgb(226, 201, 167);
-}
-
-.sidebarItems {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-
-    height: 30vh;
-}
-
-.wrapper {
-    width: 85%;
-    margin-left: 15%;
-
-    padding: 10px 10px;
-}
-
 .orders {
     margin-top: 100px;
 }
-.order {
-    border-style: none;
-    border-radius: 10px;
 
-    width: 60%;
-    min-width: 300px;
-    height: 300px;
+/* Mobile */
+@media only screen and (max-width: 767px) {
+    .order {
+        border-style: none;
+        border-radius: 10px;
 
-    padding: 20px 20px;
-    margin-bottom: 20px;
+        height: fit-content;
+    
+        padding: 20px 20px;
+        margin-bottom: 20px;
+    
+        background-color: #D1B992;
+    }
 
-    background-color: #D1B992;
+    .wrapper {
+        width: 100%;
+        margin-left: 1%;
+    
+        padding: 10px 10px;
+    }
+
+    .tooltiptext {
+        display: none;
+    }
+    
+    .orderContentLeft {
+        width: 90%;
+    }
+    
+    .orderContentRight {
+        margin-top: 30px;
+        width: 90%;
+    }
 }
+
+/* Desktop */
+@media only screen and (min-width: 768px) {
+    .container {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .wrapper {
+        width: 85%;
+        margin-left: 17%;
+    }
+
+    .order {
+        border-style: none;
+        border-radius: 10px;
+    
+        width: 60%;
+        min-width: 300px;
+        height: 300px;
+    
+        padding: 20px 20px;
+        margin-bottom: 20px;
+    
+        background-color: #D1B992;
+    }
+
+    /* Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Tooltip text */
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 400px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+  
+    /* Position the tooltip text */
+    position: absolute;
+    /* z-index: 2; */
+    bottom: 125%;
+    /* left: -1%; */
+    margin-left: -100px;
+  
+    /* Fade in tooltip */
+    opacity: 0;
+    transition: 0.3s;
+  }
+  
+  /* Show the tooltip text when you mouse over the tooltip container */
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .orderContent {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .orderContentLeft {
+        width: 60%;
+    }
+
+    .orderContentRight {
+        float: right;
+        width: 40%;
+    }
+
+}
+
+
 
 .orderTitle {
     font-weight: bold;
@@ -110,52 +166,3 @@
     margin-bottom: 10px;
     cursor: pointer;
 }
-
-.orderContent {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-
-.orderContentLeft {
-    width: 60%;
-}
-
-.orderContentRight {
-    float: right;
-    width: 40%;
-}
-
-/* Tooltip container */
-.tooltip {
-    position: relative;
-    display: inline-block;
-  }
-  
-  /* Tooltip text */
-  .tooltip .tooltiptext {
-    visibility: hidden;
-    width: 400px;
-    background-color: #555;
-    color: #fff;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
-  
-    /* Position the tooltip text */
-    position: absolute;
-    /* z-index: 2; */
-    bottom: 125%;
-    /* left: -1%; */
-    margin-left: -100px;
-  
-    /* Fade in tooltip */
-    opacity: 0;
-    transition: 0.3s;
-  }
-  
-  /* Show the tooltip text when you mouse over the tooltip container */
-  .tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
-  }
