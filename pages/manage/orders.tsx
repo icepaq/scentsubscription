@@ -3,6 +3,7 @@ import styles from '../../styles/Manage.module.css'
 import Swal from 'sweetalert2'
 import Cookie from 'js-cookie'
 import { useRouter } from 'next/router'
+import Sidebar from '../components/sidebar'
 
 type OrderEntry = {
     _id: string,
@@ -91,12 +92,7 @@ const Main = () => {
     return (
         <>
             <div className={styles.container}>
-                <div className={styles.sidebar}>
-                    <div className={styles.sidebarItems}>
-                        <div className={styles.sidebarItem}>Orders</div>
-                        <div className={styles.sidebarItem}>Account Settings</div>
-                    </div>
-                </div>
+                <Sidebar />
                 <div className={styles.wrapper}>
                     <div className={styles.title}>
                         <h1>Your Orders</h1>

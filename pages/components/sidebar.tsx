@@ -36,8 +36,12 @@ const Sidebar: NextPage = () => {
     <>
         <div className={styles.sidebar}>
             <div className={styles.sidebarItems}>
-                <div className={styles.sidebarItem}>Orders</div>
-                <div className={styles.sidebarItem}>Account Settings</div>
+                <Link href="/manage/orders">
+                    <div className={styles.sidebarItem}>Orders</div>
+                </Link>
+                <Link href="/manage/account">
+                    <div className={styles.sidebarItem}>Account Settings</div>
+                </Link>
             </div>
         </div>
     </>
