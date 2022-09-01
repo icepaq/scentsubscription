@@ -92,7 +92,7 @@ const Account = () => {
     const changePlan = async (e: any) => {
         const response = await Swal.fire({
             title: 'Changing Plans',
-            text: 'You are changing your plan to ' + plan == '3500' ? 'Basic' : 'Premium',
+            text: 'You are changing your plan to ' + (plan == '3500' ? 'Basic' : 'Premium'),
             icon: 'info',
             showCancelButton: true,
         });
