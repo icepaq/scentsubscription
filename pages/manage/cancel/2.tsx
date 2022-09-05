@@ -1,7 +1,18 @@
 import Image from 'next/image';
 import styles from '../../../styles/Cancel.module.css';
+import Cookies from 'js-cookie';
 
 const Cancel = () => {
+
+    const applyDiscount = async (e: any) => {   
+        const email = Cookies.get('email') as string;
+
+        const params = new URLSearchParams();
+        params.append('email', email);
+
+        fetch(process.env.NEXT_PUBLIC_SITE_URL + "/api/auth/canceldiscount", { method: 'POST', body: params });
+    }   
+
     return (
         <>
             <div className={styles.container}>
@@ -33,7 +44,7 @@ const Cancel = () => {
 
                     <div className={styles.row}>
                         <div className={styles.button}>No thank you, cancel</div>
-                        <div className={styles.button}>Yes please!</div>
+                        <div className={styles.button} onClick={applyDiscount}>Yes please!</div>
                     </div>
                 </div>
             </div>
