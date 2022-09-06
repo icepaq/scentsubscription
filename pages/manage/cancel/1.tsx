@@ -1,12 +1,25 @@
 import styles from '../../../styles/Cancel.module.css';
 import Link from 'next/link';
 import Cookies from 'js-cookie';
-import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
-
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL;
 const Cancel = () => {
 
-    const router = useRouter();
+    const [couponUsed, setCouponUsed] = useState(false);
+
+    useEffect(() => {
+        const main = async () => {
+            const params = new URLSearchParams();
+            params.append("email", Cookies.get("email") as string);
+            params.append("coupon", "cancel");
+
+            const r = await fetch(SITE_URL + "/api/data/checkcoupon", { body: params, method: "POST" }).then(res => res.json());
+            setCouponUsed(r.used);
+        }
+
+        main()
+    })
 
     const submitCancelInfo = async (e: any) => {
         const info = []
@@ -55,7 +68,9 @@ const Cancel = () => {
                         <Link href={'/manage/orders'}>
                             <div className={styles.button}>Go Back</div>
                         </Link>
-                        <div className={styles.button} onClick={submitCancelInfo}>Continue</div>
+                        <Link href={couponUsed ? '/manage/cancel/cancel' : '/manage/cancel/2'}>
+                            <div className={styles.button} onClick={submitCancelInfo}>Continue</div>
+                        </Link>
                     </div>
                 </div>
             </div>
