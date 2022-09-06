@@ -1,19 +1,37 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import styles from '../../../styles/Cancel.module.css';
 import Cookies from 'js-cookie';
+import Swal from 'sweetalert2';
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL;
 const Cancel = () => {
 
-    useEffect(() => {
-        const params = new URLSearchParams();
-        params.append("email", Cookies.get("email") as string);
-        params.append("password", r);
+    const [cancelled, setCancelled] = useState(false);
 
-        fetch(SITE_URL + "/api/stripe/cancel", { body: params, method: "POST" }).then(res => res.json());
+    useEffect(() => {
+
+        const main = async () => {
+            const r = await Swal.fire({
+                title: 'Are you sure?',
+                text: "Please enter your password to cancel",
+                input: 'password',
+            }).then(r => r.value);
+    
+            if (r) {
+                // TODO: Add frontend verification of password
+                const params = new URLSearchParams();
+                params.append("email", Cookies.get("email") as string);
+                params.append("password", r);
+                fetch(SITE_URL + "/api/stripe/cancel", { body: params, method: "POST" }).then(res => res.json());
+                setCancelled(true);
+            }
+        }
+
+        main();
     }, [])
 
     return (
+        cancelled ?
         <>
             <div className={styles.container}>
                 <div className={styles.wrapper}>
@@ -27,6 +45,10 @@ const Cancel = () => {
                 </div>
             </div>
         </>
+
+        :
+
+        null
     )
 }
 
