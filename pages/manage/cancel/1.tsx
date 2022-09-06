@@ -1,6 +1,30 @@
 import styles from '../../../styles/Cancel.module.css';
+import Link from 'next/link';
+import Cookies from 'js-cookie';
+import { useRouter } from 'next/router';
+
 
 const Cancel = () => {
+
+    const router = useRouter();
+
+    const submitCancelInfo = async (e: any) => {
+        const info = []
+        const selections = document.querySelectorAll('input[type=checkbox]:checked');
+        selections.forEach((selection) => {
+            info.push(selection.id);
+        })
+
+        info.push((document.getElementById('reason') as HTMLInputElement).value);
+
+        const params = new URLSearchParams();
+        params.append('info', info.join(', '));
+        params.append('email', Cookies.get('email') as string);
+
+        await fetch(process.env.NEXT_PUBLIC_SITE_URL + "/api/data/cancelreason", { method: 'POST', body: params })
+
+    }
+
     return (
         <>
             <div className={styles.container}>
@@ -12,24 +36,26 @@ const Cancel = () => {
                         Please let us know what we could have done better
                     </div>
                     <div className={styles.form}>
-                        <input className={styles.checkbox} type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
+                        <input className={styles.checkbox} type="checkbox" id="expensive" name="expensive" value="Bike" />
                         <div className={styles.labelText}>Too expensive</div> <br />
 
-                        <input className={styles.checkbox} type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
+                        <input className={styles.checkbox} type="checkbox" id="lack" name="lack" value="Bike" />
                         <div className={styles.labelText}>Lack of Products</div> <br />
 
-                        <input className={styles.checkbox} type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
+                        <input className={styles.checkbox} type="checkbox" id="complicated" name="complicated" value="Bike" />
                         <div className={styles.labelText}>Platform too complicated</div> <br />
                         
-                        <input className={styles.checkbox} type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
+                        <input className={styles.checkbox} type="checkbox" id="other" name="other" value="Bike" />
                         <div className={styles.labelText}>Other</div> <br />
 
-                        <input type={'text'} className={styles.input} placeholder={'Please specify (optional)'} />
+                        <input id='reason' type={'text'} className={styles.input} placeholder={'Please specify (optional)'} />
                     </div>
 
                     <div className={styles.row}>
-                        <div className={styles.button}>Go Back</div>
-                        <div className={styles.button}>Continue</div>
+                        <Link href={'/manage/orders'}>
+                            <div className={styles.button}>Go Back</div>
+                        </Link>
+                        <div className={styles.button} onClick={submitCancelInfo}>Continue</div>
                     </div>
                 </div>
             </div>
