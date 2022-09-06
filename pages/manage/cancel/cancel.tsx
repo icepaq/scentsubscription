@@ -1,12 +1,17 @@
-import Image from 'next/image';
+import { useEffect } from 'react';
 import styles from '../../../styles/Cancel.module.css';
 import Cookies from 'js-cookie';
-import Swal from 'sweetalert2';
-import { useRouter } from 'next/router';
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL;
 const Cancel = () => {
 
-    const router = useRouter();
+    useEffect(() => {
+        const params = new URLSearchParams();
+        params.append("email", Cookies.get("email") as string);
+        params.append("password", r);
+
+        fetch(SITE_URL + "/api/stripe/cancel", { body: params, method: "POST" }).then(res => res.json());
+    }, [])
 
     return (
         <>

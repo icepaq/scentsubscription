@@ -72,7 +72,7 @@ const Account = () => {
     }
 
     const cancel = async (e: any) => {
-        // Create a sweet alert to ask user for password, then check password against backend
+        // TODO: Create a sweet alert to ask user for password, then check password against backend
        const r = await Swal.fire({
             title: 'Are you sure?',
             text: "Please enter your password to verify",
