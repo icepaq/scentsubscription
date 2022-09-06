@@ -1,8 +1,12 @@
 import Image from 'next/image';
 import styles from '../../../styles/Cancel.module.css';
 import Cookies from 'js-cookie';
+import Swal from 'sweetalert2';
+import { useRouter } from 'next/router';
 
 const Cancel = () => {
+
+    const router = useRouter();
 
     const applyDiscount = async (e: any) => {   
         const email = Cookies.get('email') as string;
@@ -10,7 +14,25 @@ const Cancel = () => {
         const params = new URLSearchParams();
         params.append('email', email);
 
-        fetch(process.env.NEXT_PUBLIC_SITE_URL + "/api/auth/canceldiscount", { method: 'POST', body: params });
+        const r = await fetch(process.env.NEXT_PUBLIC_SITE_URL + "/api/auth/canceldiscount", { method: 'POST', body: params })
+
+        if (r.status == 400) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong! If this conitnues, please contact support.',
+            })
+        }
+
+        if (r.status == 200) {
+            await Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: 'Your discount has been applied.',
+            })
+
+            router.push('/manage/orders');
+        }
     }   
 
     return (
