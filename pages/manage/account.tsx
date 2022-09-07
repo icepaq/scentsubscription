@@ -72,21 +72,7 @@ const Account = () => {
     }
 
     const cancel = async (e: any) => {
-        // TODO: Create a sweet alert to ask user for password, then check password against backend
-       const r = await Swal.fire({
-            title: 'Are you sure?',
-            text: "Please enter your password to verify",
-            input: 'password',
-        }).then(r => r.value);
-
-        if (r) {
-            const params = new URLSearchParams();
-            params.append("email", Cookies.get("email") as string);
-            params.append("password", r);
-            await fetch(SITE_URL + "/api/stripe/cancel", { body: params, method: "POST" }).then(res => res.json());
-
-            router.reload();
-        }
+        router.push('/manage/cancel/1');
     }
 
     const changePlan = async (e: any) => {
