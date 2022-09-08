@@ -3,6 +3,7 @@ import styles from '../../../styles/Cancel.module.css';
 import Cookies from 'js-cookie';
 import Swal from 'sweetalert2';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 const Cancel = () => {
 
@@ -65,7 +66,9 @@ const Cancel = () => {
                     </div>
 
                     <div className={styles.row}>
-                        <div className={styles.button}>No thank you, cancel</div>
+                        <Link href="/manage/cancel/cancel">
+                            <div className={styles.button}>No thank you, cancel</div>
+                        </Link>
                         <div className={styles.button} onClick={applyDiscount}>Yes please!</div>
                     </div>
                 </div>

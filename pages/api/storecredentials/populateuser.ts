@@ -15,6 +15,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         await collection.updateOne({email: req.body.email}, {$set: {
             stripe_params: req.body,
         }});
+
+        if(customer.cancelled) {
+            await collection.updateOne({email: req.body.email}, {$set: {
+                cancelled: false,
+            }});
+        }
     } else {
         await collection.insertOne({
             email: req.body.email, 

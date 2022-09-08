@@ -19,16 +19,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return;
     }
 
-    const isValid = await bcrypt.compare(req.body.password, user.password);
+    // const isValid = await bcrypt.compare(req.body.password, user.password);
 
-    if(!isValid) {
-        res.status(400).json({ status: 400 });
-        return;
-    }
+    // if(!isValid) {
+    //     res.status(400).json({ status: 400 });
+    //     return;
+    // }
 
     const sub_id = user.stripe_params.subscription;
 
-    const deleted = await stripe.subscriptions.del(sub_id);
+    const deleted = await stripe.subscriptions.cancel(sub_id);
     console.log(deleted)
 
     await collection.updateOne({ email: req.body.email }, { $set: { cancelled: true } });

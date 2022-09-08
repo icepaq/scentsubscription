@@ -72,6 +72,16 @@ const Account = () => {
     }
 
     const cancel = async (e: any) => {
+        if (cancelled) {
+            const params = new URLSearchParams();
+            params.append("email", Cookies.get("email") as string);
+            // params.append("password", Cookies.get("token") as string);
+
+            const r = await fetch(SITE_URL + "/api/stripe/renew", { body: params, method: "POST" }).then(res => res.json());
+            window.location.href = r.url;
+
+            return;
+        }
         router.push('/manage/cancel/1');
     }
 
