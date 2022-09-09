@@ -9,13 +9,19 @@ const Orders = () => {
     useEffect(() => {
         fetch(`${SITE_URL}/api/admin/getorders`)
             .then(res => res.json())
-            .then(data => {console.log(data); setOrders(data)})
+            .then(data => {setOrders(data)})
 
         
     }, []);
 
-    const handleChange = (e: any) => {
-        console.log(e.target.value)
+    const handleChange = async (email: string, index: number, value: string) => {
+        const params = new URLSearchParams();
+
+        params.append('email', email);
+        params.append('index', index.toString());
+        params.append('status', value);
+
+        fetch(`${SITE_URL}/api/admin/updateorderstatus`, { method: 'POST', body: params }).then(res => res.json());
     }
 
     return (
@@ -25,7 +31,8 @@ const Orders = () => {
                 <input type="text" placeholder="Search" />
             </div>
             <div className={styles.orders}>
-                {orders?.filtered?.map((order: any) => {
+                {orders?.filtered?.map((order: any, index: number) => {
+                    console.log(order);
                     return (
                     <div className={styles.order}>
                         <span className={styles.left}>
@@ -50,10 +57,12 @@ const Orders = () => {
 
                             <div className={styles.subtitle}>Update Status</div>
                             <div className={styles.select}>
-                                <select id='status' onChange={handleChange}>
-                                    <option id='pending'>Pending</option>
-                                    <option id='packaged'>Packaged</option>
-                                    <option id='shipped'>Shipped</option>
+                                <select id='status' onChange={(e) => handleChange(order.user, order.index, e.target.value)} >
+                                    <option id='pending' selected={order.order.status == 'Pending' || 
+                                                                   order.order.status == undefined || 
+                                                                   order.order.status == null}>Pending</option>
+                                    <option id='packaged' selected={order.order.status == 'Packaged'} >Packaged</option>
+                                    <option id='shipped' selected={order.order.status == 'Shipped'}>Shipped</option>
                                 </select>
                             </div>
                         </span>

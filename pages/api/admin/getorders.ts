@@ -12,8 +12,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const orders: any[] = [];
     r.map((user) => {
-        user.orders.map((order: any) => {
+        user.orders.map((order: any, index: number) => {
             orders.push({
+                index: index,
                 user: user.email,
                 order: order,
             });
@@ -50,6 +51,5 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         users[filtered[i].user] = user.stripe_params;
     }
 
-    console.log(filtered);
     res.status(200).json({filtered, users});
 }
