@@ -155,7 +155,7 @@ const Account = () => {
                         <div className={styles.button} onClick={updateUser}>Update Profile</div>
                     </div>
                     <div className={styles.box}>
-                        <div className={styles.inputCombo}>Current Plan - {'$' + (Number.parseInt(plan) / 100).toFixed(2) + ' / month'}</div>
+                        <div className={styles.inputCombo}>Current Plan - {'$' + (Number.parseInt(plan) / 100).toFixed(2) + ' / month'} { cancelled ? ' (inactive)'  : null}</div>
                         <div className={styles.button}>Get Help</div>
                         <div className={styles.button} onClick={changePlan}>{plan == '1500'? 'Upgrade Plan' : 'Downgrade Plan'}</div>
                         <div className={styles.button} onClick={cancel}>{cancelled ? 'Renew Subscription' : 'Cancel Subscription'}</div>
