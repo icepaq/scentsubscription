@@ -81,7 +81,7 @@ const Main = () => {
 
 
     const getHelp = (e: any) => {
-        router.push('/help');
+        window.location.href = 'https://scentsubs.com/support';
     }
 
     return (
