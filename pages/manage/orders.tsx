@@ -43,35 +43,32 @@ const Main = () => {
 
     const monthNumberToName = (monthNumber: number) => {
         let ending = '';
-        if (monthNumber === new Date().getMonth()) {
+        if (monthNumber === new Date().getMonth() + 1) {
             ending = ' (Current Month)';
         }
         switch (monthNumber) {
-            case 0:
-                return 'January' + ending;
-            case 1:
-                return 'February' + ending;
-            case 2:
-                return 'March' + ending;
-            case 3:
-                return 'April' + ending;
-            case 4:
-                return 'May' + ending;
-            case 5:
-                return 'June'   + ending;
-            case 6:
-                return 'July' + ending;
-            case 7:
-                return 'August' + ending;
-            case 8:
-                return 'September' + ending;
-            case 9:
-                return 'October' + ending;
-            case 10:
-                return 'November' + ending;
-            case 11:
-                return 'December' + ending;
+            case 1: return 'January' + ending;
+            case 2: return 'February' + ending;
+            case 3: return 'March' + ending;
+            case 4: return 'April' + ending;
+            case 5: return 'May' + ending;
+            case 6: return 'June'   + ending;
+            case 7: return 'July' + ending;
+            case 8: return 'August' + ending;
+            case 9: return 'September' + ending;
+            case 10: return 'October' + ending;
+            case 11: return 'November' + ending;
+            case 12: return 'December' + ending;
         }
+    }
+
+    const reOrder = async (month: number) => {
+        Swal.fire(
+            {
+                title: 'Feature coming soon',
+                text: 'This feature is coming in the next few days. Please contact support to have a specific product edited.',
+            }
+        )
     }
 
     const showEditOrder = (month: number) => {
@@ -83,10 +80,8 @@ const Main = () => {
     }
 
 
-    const reOrder = (e: any) => {
-        Swal.fire({
-            title: 'Feature Coming Soon',
-        })
+    const getHelp = (e: any) => {
+        router.push('/help');
     }
 
     return (
@@ -132,14 +127,10 @@ const Main = () => {
                                             }
                                         </div>
                                         <div className={styles.orderContentRight}>
-                                            <div className={styles.button} onClick={reOrder}>
-                                                Order Package Again
+                                            <div className={styles.button} onClick={getHelp}>
+                                                Get Help
                                             </div>
-                                            <div className={`${styles.button} ${styles.tooltip}`} onClick={reOrder}>
-                                                <span className={styles.tooltiptext}>If you liked a certain product in this package, you can add it to a future package</span>
-                                                Order Specific Product Again
-                                            </div>
-                                            { showEditOrder(order.month) }
+                                            { showEditOrder(order.month - 1) }
                                         </div>
 
                                     </div>
