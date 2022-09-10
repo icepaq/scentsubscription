@@ -72,12 +72,12 @@ const Main = () => {
         )
     }
 
-    const showEditOrder = (month: number) => {
+    const showEditOrder = (month: number, date: number) => {
         const orderButton = <>
             <div className={styles.cancelButton} onClick={() => reOrder(month)}>Edit Order</div>
         </>
-        console.log(month, new Date().getMonth())
-        return (month > new Date().getMonth() ? orderButton : null);
+        console.log(date, new Date().getDate())
+        return (month >= new Date().getMonth() && date > new Date().getDate() ? orderButton : null);
     }
 
 
@@ -131,7 +131,7 @@ const Main = () => {
                                             <div className={styles.button} onClick={getHelp}>
                                                 Get Help
                                             </div>
-                                            { showEditOrder(order.month - 1) }
+                                            { showEditOrder(order.month - 1, order.date) }
                                         </div>
 
                                     </div>
