@@ -14,6 +14,7 @@ type OrderEntry = {
 }
 
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL
 const Main = () => {
 
     const [orders, setOrders] = useState([]);
@@ -26,7 +27,7 @@ const Main = () => {
             const params = new URLSearchParams();
             params.append('email', Cookie.get('email') as string);
             params.append('token', Cookie.get('token') as string);
-            const res = await fetch('http://localhost:3000/api/orders/getorders', {method: 'POST', body: params}).then(res => res.json());
+            const res = await fetch(SITE_URL + '/api/orders/getorders', {method: 'POST', body: params}).then(res => res.json());
             setOrders(res.orders);
             setCategories(res.categories);
         }
@@ -41,24 +42,24 @@ const Main = () => {
         apiCall()
     }, [])
 
-    const monthNumberToName = (monthNumber: number) => {
+    const monthNumberToName = (monthNumber: number, date: number) => {
         let ending = '';
         if (monthNumber === new Date().getMonth() + 1) {
             ending = ' (Current Month)';
         }
         switch (monthNumber) {
-            case 1: return 'January' + ending;
-            case 2: return 'February' + ending;
-            case 3: return 'March' + ending;
-            case 4: return 'April' + ending;
-            case 5: return 'May' + ending;
-            case 6: return 'June'   + ending;
-            case 7: return 'July' + ending;
-            case 8: return 'August' + ending;
-            case 9: return 'September' + ending;
-            case 10: return 'October' + ending;
-            case 11: return 'November' + ending;
-            case 12: return 'December' + ending;
+            case 1: return 'January ' + date + ending;
+            case 2: return 'February ' + date + ending;
+            case 3: return 'March ' + date + ending;
+            case 4: return 'April ' + date + ending;
+            case 5: return 'May ' + date + ending;
+            case 6: return 'June ' + date + ending;
+            case 7: return 'July ' + date + ending;
+            case 8: return 'August ' + date + ending;
+            case 9: return 'September ' + date + ending;
+            case 10: return 'October ' + date + ending;
+            case 11: return 'November ' + date + ending;
+            case 12: return 'December ' + date + ending;
         }
     }
 
@@ -103,7 +104,7 @@ const Main = () => {
                             return (
                                 <div className={styles.order} key={''}>
                                     <div className={styles.orderTitle}>
-                                        { monthNumberToName(order.month) }
+                                        { monthNumberToName(order.month, order.date) }
                                     </div>
 
                                     <div className={styles.orderContent}>
