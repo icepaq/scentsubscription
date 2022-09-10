@@ -30,7 +30,6 @@ export default async function UpdateProductRecommendations(gender: any, product:
 
         tempRecommendations.push(item);
     }
-    console.log(results)
 
     const _futureRecommendations: Item[] = [];
     const _futureRecommendationsObject: Item[][] = [];
