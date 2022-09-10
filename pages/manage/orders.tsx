@@ -4,6 +4,7 @@ import Swal from 'sweetalert2'
 import Cookie from 'js-cookie'
 import { useRouter } from 'next/router'
 import Sidebar from '../components/sidebar'
+import RenewHeader from '../components/renewHeader'
 
 type OrderEntry = {
     _id: string,
@@ -90,6 +91,7 @@ const Main = () => {
             <div className={styles.container}>
                 <Sidebar />
                 <div className={styles.wrapper}>
+                    <RenewHeader />
                     <div className={styles.title}>
                         <h1>Your Orders</h1>
                     </div>

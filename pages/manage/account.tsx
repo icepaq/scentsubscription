@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../../styles/Account.module.css";
 import Sidebar from "../components/sidebar";
 import Cookies from "js-cookie";
 import Swal from "sweetalert2";
 import { useRouter } from "next/router";
+import RenewHeader from "../components/renewHeader";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL;
 const Account = () => {
@@ -113,6 +114,8 @@ const Account = () => {
         <div className={styles.container}>
             <Sidebar />
             <div className={styles.wrapper}>
+                <RenewHeader />            
+
                 <h1>Hi Anton,</h1>
                 <div className={styles.boxTitle}>Profile</div>
                 <div className={styles.boxWrapper}>

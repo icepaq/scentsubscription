@@ -46,7 +46,8 @@
 
     .wrapper {
         width: 85%;
-        margin-left: 17%;
+        margin-left: 18%;
+        padding-top: 10px;
     }
 
     .order {

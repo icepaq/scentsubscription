@@ -3,6 +3,10 @@
         margin-left: 10px;
     }
 
+    .renewHeader {
+        margin-left: -10px;
+    }
+
     .boxWrapper {
         width: 100%;
         margin: 0 auto;
@@ -148,3 +152,18 @@
 }
 }
 
+.renewHeader {
+    margin: -10px -4%;
+    background-color: #dac2a2;
+
+    padding: 0px 1.1%;
+
+    position: static;
+}
+
+.link {
+    text-decoration: underline;
+    /* font-weight: bold; */
+
+    cursor: pointer;
+}
