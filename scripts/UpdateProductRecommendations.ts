@@ -7,6 +7,7 @@ type Item = {
     product: string,
     monthly_price: number,
     imgur: string,
+    status?: string,
 }
 
 export default async function UpdateProductRecommendations(gender: any, product: any, budget: any, email: string) {
@@ -24,6 +25,7 @@ export default async function UpdateProductRecommendations(gender: any, product:
             product: results[0][key].product,
             monthly_price: results[0][key].monthly_price,
             imgur: results[0][key].imgur,
+            status: 'Skipped',
         }
 
         tempRecommendations.push(item);
