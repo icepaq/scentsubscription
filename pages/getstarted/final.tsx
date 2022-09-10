@@ -14,6 +14,7 @@ type Item = {
     product: string,
     monthly_price: number,
     imgur: string,
+    status?: string,
 }
 
 const Final = () => {
@@ -53,6 +54,7 @@ const Final = () => {
                         product: results[i][key].product,
                         monthly_price: results[i][key].monthly_price,
                         imgur: results[i][key].imgur,
+                        status: 'Pending'
                     }
                     tempitem.push(item);
                     _futureRecommendations.push(item);

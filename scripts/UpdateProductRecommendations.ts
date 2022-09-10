@@ -42,6 +42,7 @@ export default async function UpdateProductRecommendations(gender: any, product:
                 product: results[i][key].product,
                 monthly_price: results[i][key].monthly_price,
                 imgur: results[i][key].imgur,
+                status: 'Pending',
             }
             tempitem.push(item);
             _futureRecommendations.push(item);
